@@ -8,7 +8,8 @@ function endsWith($haystack, $needle)
     (substr($haystack, -$length) === $needle);
 }
 
-$app_length = strlen("//floating-sands-86400.herokuapp.com/");
+$app_length = strlen("aqueous-coast-49377.herokuapp.com");
+$app_length = $app_length + 3;
 
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
