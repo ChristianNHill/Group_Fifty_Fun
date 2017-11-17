@@ -3,20 +3,20 @@
 <head>
 </head>
 <body>
+<p>Testing connection to the database</p>
+
 <?php
 require 'connection.php';
 
 $connection = @mysqli_connect (HOST, USER,PASS, DB);
 // please fill these parameters with the actual data
-if(mysqli_connect_errno())
-{
-echo "<h4>Failed to connect to MySQL:
-</h4>".mysqli_connect_error()."\n";
+if(mysqli_connect_errno()){
+	echo "<h4>Failed to connect to MySQL:</h4>".mysqli_connect_error()."\n";
 }
-else
-{
-echo "<h4>Successfully connected to MySQL: </h4> \n";
+else{
+	echo "<h4>Successfully connected to MySQL: </h4> \n";
 }
 ?>
+
 </body>
 </html>
