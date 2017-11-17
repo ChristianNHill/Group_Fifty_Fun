@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<?php 
-//require 'lock.php';
-require 'connect.php';
-
-?>	
 <html>
 <head>
 	<!-- Latest compiled and minified CSS -->

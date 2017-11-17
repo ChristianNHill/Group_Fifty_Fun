@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<?php 
-//require 'lock.php';
-require 'connect.php';
-
-?>	
 <html>
 <head>
 	<!-- Latest compiled and minified CSS -->
@@ -40,7 +35,7 @@ require 'connect.php';
         <input name="password" maxlength="200" type="password" required="required" class="form-control" placeholder="Password" />
     </div>
     <button class="btn btn-success btn-lg pull-right" type="submit">Login</button>
-	Not registered? <a href="register.html">Register here!</a>
+	Not registered? <a href="register.php">Register here!</a>
 </form>
 </div>
 </body>

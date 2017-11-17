@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<p>Testing connection to the database</p>
 <?php
 /*
 connect to mysql server using this command
@@ -43,3 +49,5 @@ $user2->print();
 //echo validate_credentials("jobr3255@colorado.edu", "wrong", $connection)."\n";
 
 ?>
+</body>
+</html>
