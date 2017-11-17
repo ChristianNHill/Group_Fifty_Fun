@@ -1,28 +1,14 @@
-# php-getting-started
+Colarborators
+Christian "Lady in the streets Data Scientist in the sheets" Hill
 
-A barebones PHP app that makes use of the [Silex](http://silex.sensiolabs.org/) web framework, which can easily be deployed to Heroku.
+Joshua "Bit Master" Brown
 
-This application supports the [Getting Started with PHP on Heroku](https://devcenter.heroku.com/articles/getting-started-with-php) article - check it out.
+Muntadher "The Code Machine" ALZayer
 
-## Deploying
+Matt "Runtime Terror" Donovan
 
-Install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
 
-```sh
-$ git clone git@github.com:heroku/php-getting-started.git # or clone your own fork
-$ cd php-getting-started
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
+connect to mysql server using this command
 
-or
+mysql -h area51-hw.mysql.database.azure.com -u area51@area51-hw -p
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using PHP on Heroku, see these Dev Center articles:
-
-- [Getting Started with PHP on Heroku](https://devcenter.heroku.com/articles/getting-started-with-php)
-- [PHP on Heroku](https://devcenter.heroku.com/categories/php)
