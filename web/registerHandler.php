@@ -18,7 +18,7 @@ if($pass != $rpass){
 require 'user.php';	
 require '../config.php';
 // Obtain a connection object by connecting to the db
-/*
+
 $connection = mysqli_connect(HOST, USER,PASS, DB);
 if(mysqli_connect_errno()){
 	$errors[] = "Failed to connect to the database";
