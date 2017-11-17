@@ -1,9 +1,15 @@
 <?php
+/*
+This entire file is a handler so anyone that enters an invalid url will redirect to here by default.
+This file then determines if the url just needs the .php extension or if the url is not 
+a file in the directory in which it will display an error. This page also handles incorrect urls
+and displays a message
+*/
+
 
 function endsWith($haystack, $needle)
 {
     $length = strlen($needle);
-
     return $length === 0 || 
     (substr($haystack, -$length) === $needle);
 }
@@ -14,8 +20,7 @@ $app_length = $app_length + 3;
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
 $length = strlen($escaped_url);
-//echo $app_length."</br>";
-//echo $length;
+
 if($length == $app_length or $length==17){	
 	header('Location: home.php');
 }

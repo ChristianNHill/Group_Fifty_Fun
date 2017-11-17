@@ -12,17 +12,16 @@ the password is A51-HWug
 Use this command to run php script on the command line
 php -f <filename>.php
 */
-require 'connection.php';
+//require '/config.php';
 
 // please fill these parameters with the actual data
 // Create connection
 //phpinfo();
 
-//require 'connection.php';
+require '../config.php';
 
-echo getenv('USER');
 
-$connection = mysqli_connect(HOST, getenv('USER'),getenv('PASS'), DB);
+$connection = mysqli_connect(HOST, USER,PASS, DB);
 if(mysqli_connect_errno()){
 	echo "<h4>Failed to connect to MySQL:</h4>".mysqli_connect_error()."\n";
 }
