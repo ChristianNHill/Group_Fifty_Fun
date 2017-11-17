@@ -29,30 +29,36 @@
 	</style>
 </head>
 <body>
+<?php 
+require "registerHandler.php";
+?>
 <div class="container">
-<form role="form">
-                <h3>Sign up</h3>
-                <div class="form-group">
-                    <label class="control-label">First Name</label>
-                    <input  name="fname" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Last Name</label>
-                    <input  name ="lname" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Email</label>
-                    <input name="email" maxlength="200" type="email" required="required" class="form-control" placeholder="Enter .edu email" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Password</label>
-                    <input name="password" maxlength="200" type="password" required="required" class="form-control" placeholder="Password" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Retype Password</label>
-                    <input name="rpassword" maxlength="200" type="text" required="required" class="form-control" placeholder="Yes, I know"  />
-                </div>
-                <button class="btn btn-success btn-lg pull-right" type="submit">Register</button>
+<form role="form" action="register.php" method="post">
+    <h3>Sign up</h3>
+    <?php 
+    if(!empty($errors)){
+    	foreach ($errors as $er){
+    		echo "<p id='errors'>$er</p>";
+    	}
+    }
+    ?>
+    <div class="form-group">
+        <label class="control-label">First Name</label>
+        <input  name="name" maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Name"  />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Email</label>
+        <input name="email" maxlength="200" type="email" required="required" class="form-control" placeholder="Enter email" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Password</label>
+        <input name="password" maxlength="200" type="password" required="required" class="form-control" placeholder="Password" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Retype Password</label>
+        <input name="rpassword" maxlength="200" type="password" required="required" class="form-control" placeholder="Re-enter password"  />
+    </div>
+    <button class="btn btn-success btn-lg pull-right" type="submit">Register</button>
 </form>
 </div>
 </body>
