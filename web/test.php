@@ -12,18 +12,15 @@ the password is A51-HWug
 Use this command to run php script on the command line
 php -f <filename>.php
 */
-//require 'connection.php';
-define("HOST","area51-hw.mysql.database.azure.com");
-define("USER","area51@area51-hw");
-define("PASS","A51-HWug");
-define("DB","hwug");
+require 'connection.php';
+
 // please fill these parameters with the actual data
 // Create connection
 //phpinfo();
 
 //require 'connection.php';
 
-$connection = mysqli_connect(HOST, USER,PASS, DB);
+$connection = mysqli_connect(HOST, getenv('USER'),getenv('PASS'), DB);
 if(mysqli_connect_errno()){
 	echo "<h4>Failed to connect to MySQL:</h4>".mysqli_connect_error()."\n";
 }
