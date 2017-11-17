@@ -14,10 +14,11 @@ if(strlen($name)>0 and strlen(trim($name))==0){
 if($pass != $rpass){
 	$errors[] = 'Passwords do not match!';
 }
-/*
+
 require 'user.php';	
 require '../config.php';
 // Obtain a connection object by connecting to the db
+/*
 $connection = mysqli_connect(HOST, USER,PASS, DB);
 if(mysqli_connect_errno()){
 	$errors[] = "Failed to connect to the database";
