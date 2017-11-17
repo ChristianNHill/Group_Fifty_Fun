@@ -61,7 +61,7 @@ class User{
 	}
 
 	// Prints the values of the user
-	function print(){
+	function print_user(){
 		echo $this->id.", ".$this->name.", ".$this->email.", ".$this->password."\n";
 	} 
 
