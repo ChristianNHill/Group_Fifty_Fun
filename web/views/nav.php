@@ -10,32 +10,33 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 <?php
-require "user.php";
+require($_SERVER['DOCUMENT_ROOT']."/user.php");
+//require "user.php";
 ?>
 
 <nav class="navbar navbar-inverse bg-inverse">
-  <a class="navbar-brand" href="home.php">Homework Underground</a>
-  <form class="form-inline" action='handlers/logoutHandler.php' method='get'>
-    <a href="home.php"><button class="btn btn-outline-success" type="button">Home</button></a>
-    <?php 
-    if(logged_in()){
-    	echo "<a href='profile.php'><button class='btn btn-outline-success' type='button'>Profile</button></a>\n";
-    }
-    else{
-    	echo "<a href='register.php'><button class='btn btn-outline-success' type='button'>Register</button></a>\n";
-    }
-    ?>
-    <?php 
-    if(logged_in()){
-    	echo "<button class='btn btn-outline-success' name='logout' type='submit'>Log Out</button>\n";
-    }
-    else{
-    	echo "<a href='login.php'><button class='btn btn-outline-success' type='button'>Log In</button></a>\n";
-    }
-    ?>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </form>
+	<a class="navbar-brand" href="home.php">Homework Underground</a>
+	<form class="form-inline" action='handlers/logoutHandler.php' method='get'>
+	<a href="home.php"><button class="btn btn-outline-success" type="button">Home</button></a>
+	<?php 
+	if(logged_in()){
+		echo "<a href='profile.php'><button class='btn btn-outline-success' type='button'>Profile</button></a>\n";
+	}
+	else{
+		echo "<a href='register.php'><button class='btn btn-outline-success' type='button'>Register</button></a>\n";
+	}
+	?>
+	<?php 
+	if(logged_in()){
+		echo "<button class='btn btn-outline-success' name='logout' type='button'>Log Out</button>\n";
+	}
+	else{
+		echo "<a href='login.php'><button class='btn btn-outline-success' type='button'>Log In</button></a>\n";
+	}
+	?>
+	</form>
+	<form class="form-inline my-2 my-lg-0" action='views/results.php' method='get'>
+	  <input class="form-control mr-sm-2" name="search" type="text" placeholder="Search">
+	  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	</form>
 </nav>

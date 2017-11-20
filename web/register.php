@@ -4,8 +4,8 @@
 </head>
 <body>
 <?php 
-require "views/nav.php";
-require "handlers/errorHandler.php";
+require($_SERVER['DOCUMENT_ROOT']."/views/nav.php");
+require($_SERVER['DOCUMENT_ROOT']."/handlers/errorHandler.php");
 ?>
 <div class="container">
 <form role="form" action="register.php" method="get">

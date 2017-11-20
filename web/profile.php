@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-<?php include "views/nav.php"; ?>
+<?php require($_SERVER['DOCUMENT_ROOT']."/views/nav.php"); ?>
 <?php
 
 if(logged_in()){
