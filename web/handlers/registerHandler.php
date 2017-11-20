@@ -29,10 +29,12 @@ if(validate_email($email, $connection)){
 }
 
 if(empty($errors) and strlen($name)>0){
-
 	$user = new User($name,$email,$pass);
 	$user->addNewUser($connection);
-	echo "user created!";
+	$_SESSION["name"] = $user->getName();
+	$_SESSION["email"] = $user->getEmail();
+	$_SESSION["logged_in"] = True;
+	header('Location: profile.php');
 }
 
 /*
