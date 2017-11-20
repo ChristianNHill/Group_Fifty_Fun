@@ -3,7 +3,9 @@
 <head>
 </head>
 <body>
-<?php require($_SERVER['DOCUMENT_ROOT']."/views/nav.php"); ?>
+<?php 
+require "views/nav.php";
+?>
 <h1>Welcome!</h1>
 </body>
 </html>
