@@ -4,8 +4,10 @@
 </head>
 <body>
 <?php 
-require($_SERVER['DOCUMENT_ROOT']."/views/nav.php");
-require($_SERVER['DOCUMENT_ROOT']."/handlers/errorHandler.php");
+//require($_SERVER['DOCUMENT_ROOT']."/views/nav.php");
+//require($_SERVER['DOCUMENT_ROOT']."/handlers/errorHandler.php");
+require "views/nav.php";
+require "handlers/errorHandler.php";
 ?>
 <div class="container">
 <form role="form" action="login.php" method="get">
