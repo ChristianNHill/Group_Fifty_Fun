@@ -1,9 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
 <?php include "views/nav.php"; ?>
 <?php
 
-require "user.php";
-
-if($_SESSION["logged_in"]){
+if(logged_in()){
 	?>
 	<h1>Welcome to your profile page, <?php echo $_SESSION["name"]; ?>!</h1><?php
 }
@@ -12,3 +15,5 @@ else{
 	<a href="login.php">Login here!</a><?php
 }
 ?>
+</body>
+</html>

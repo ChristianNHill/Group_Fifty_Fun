@@ -1,14 +1,14 @@
-<?php include "views/nav.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
 <?php 
-require "handlers/loginHandler.php";
+require "views/nav.php";
+require "handlers/errorHandler.php";
 ?>
 <div class="container">
-<form role="form" action="login.php">
+<form role="form" action="login.php" method="get">
     <h3>Login</h3>
     <?php 
     if(!empty($errors)){
@@ -25,7 +25,7 @@ require "handlers/loginHandler.php";
         <label class="control-label">Password</label>
         <input name="password" maxlength="200" type="password" required="required" class="form-control" placeholder="Password" />
     </div>
-    <button class="btn btn-success btn-lg pull-right" type="submit">Login</button>
+    <button class="btn btn-success btn-lg pull-right" name="login" type="submit">Login</button>
 	Not registered? <a href="register.php">Register here!</a>
 </form>
 </div>
