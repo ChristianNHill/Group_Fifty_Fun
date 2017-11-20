@@ -3,9 +3,7 @@
 <head>
 </head>
 <body>
+<?php include "views/nav.php"; ?>
 <h1>Welcome!</h1>
-<a href="register.php">Register</a>
-<a href="login.php">Login here</a>
-<a href="test.php">test connect to database</a>
 </body>
 </html>
