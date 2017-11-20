@@ -10,14 +10,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 <?php
-require($_SERVER['DOCUMENT_ROOT']."/user.php");
-//require "user.php";
+//require($_SERVER['DOCUMENT_ROOT']."/user.php");
+require "user.php";
 ?>
 
 <nav class="navbar navbar-inverse bg-inverse">
 	<a class="navbar-brand" href="home.php">Homework Underground</a>
 	<form class="form-inline" action='handlers/logoutHandler.php' method='get'>
-	<a href="home.php"><button class="btn btn-outline-success" type="button">Home</button></a>
+	<a href="/home.php"><button class="btn btn-outline-success" type="button">Home</button></a>
 	<?php 
 	if(logged_in()){
 		echo "<a href='profile.php'><button class='btn btn-outline-success' type='button'>Profile</button></a>\n";
@@ -28,7 +28,7 @@ require($_SERVER['DOCUMENT_ROOT']."/user.php");
 	?>
 	<?php 
 	if(logged_in()){
-		echo "<button class='btn btn-outline-success' name='logout' type='button'>Log Out</button>\n";
+		echo "<button class='btn btn-outline-success' name='logout' type='submit'>Log Out</button>\n";
 	}
 	else{
 		echo "<a href='login.php'><button class='btn btn-outline-success' type='button'>Log In</button></a>\n";
