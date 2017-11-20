@@ -10,8 +10,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 <?php
-//require($_SERVER['DOCUMENT_ROOT']."/user.php");
-require "user.php";
+//Returns True if the user is logged in and false otherwise
+function logged_in(){
+	if(isset($_SESSION["logged_in"])){
+		if($_SESSION["logged_in"]){
+	    	return True;
+	    }
+	    else{
+	    	return False;
+	    }
+	}
+	else{
+		return False;
+	}
+}
 ?>
 
 <nav class="navbar navbar-inverse bg-inverse">

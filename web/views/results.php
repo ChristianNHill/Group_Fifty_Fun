@@ -4,9 +4,8 @@
 </head>
 <body>
 <?php 
-//require($_SERVER['DOCUMENT_ROOT']."/views/nav.php");
-//require($_SERVER['DOCUMENT_ROOT']."/handlers/search.php");
-
+require "nav.php";
+require "../handlers/search.php";
 ?>
 <?php
 
