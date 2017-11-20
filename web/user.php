@@ -28,18 +28,18 @@ class User{
     */
     function __construct2($i, $connection) 
     { 
-        $q = "select * from user where id = $i;";
+    	$q = "select * from user where email = '$i';";
         $result = mysqli_query($connection, $q);
         if($result){
         	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-			$this->id = $i;
+			$this->id = $row[0];
 			$this->name = $row[1];
 			$this->email = $row[2];
 			$this->password = $row[3];
 			$this->connection = $connection;
         }
         else{
-        	$q = "select * from user where email = '$i';";
+        	$q = "select * from user where id = $i;";
         	$result = mysqli_query($connection, $q);
         	$row = mysqli_fetch_array($result, MYSQLI_NUM);
 			$this->id = $row[0];
@@ -50,16 +50,16 @@ class User{
         }
     } 
     /*
-	Arg1 is the name of the user
-	Arg2 us the email of the user
-	Arg3 is the password for the user
+	Arg1 us the email of the user
+	Arg2 is the password for the user
+	Arg3 is the connection
     */
-	function __construct3($n, $e, $p){
-		$this->name = $n;
+	function __construct3($e, $p, $c){
 		$this->email = $e;
 		$this->password = encrypt($p);
+		$this->connection = $c;
 	}
-
+	
 	// Prints the values of the user
 	function print_user(){
 		echo $this->id.", ".$this->name.", ".$this->email.", ".$this->password."\n";
@@ -100,16 +100,18 @@ class User{
 		if($this->connection != "NULL"){
 			$q = "delete from user where id = $this->id;";
 			if(mysqli_query($this->connection, $q)){
-				return "User ".$this->id." deleted from database";
+				return True;
 			}
 			else{
-				return "User ".$this->id." was not deleted from database";
+				return False;
 			}
 		}
 		else{
-			return "User not connected to database";
+			return False;//"User not connected to database";
 		}
 	}
+
+
 }
 
 function encrypt($password){
@@ -122,7 +124,7 @@ function validate_email($email, $connection){
 	$result = mysqli_query($connection, $q);
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
     if(count($row) > 0){
-    	return True;
+    	return 1;
     }
     else{
     	return False;
