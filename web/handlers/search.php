@@ -2,8 +2,9 @@
 
 if(isset($_GET['search'])) {
 	$term = $_REQUEST['search'];
+	echo "\n";
 	?>
-	<p id="results">Showing results for: <?php echo $term; ?> </p> <?php
+	<div id="results">Showing results for: <?php echo $term; ?> </div> <?php echo "\n";
 }
 
 ?>
