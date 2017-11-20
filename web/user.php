@@ -1,12 +1,11 @@
 <?php
-
+require '../config.php';
 class User{
 	private $id = "NULL";
 	private $name = "NULL";
 	private $email = "NULL";
 	private $password = "NULL";
 	private $connection = "NULL";
-
 
 	/*
 	This is the contructor for the user class calls either 
@@ -111,6 +110,13 @@ class User{
 		}
 	}
 
+	// Sets the session variables for a user that is logged in
+	function log_in(){
+		$_SESSION["name"] = $this->getName();
+		$_SESSION["email"] = $this->getEmail();
+		$_SESSION["logged_in"] = True;
+	}
+
 
 }
 
@@ -143,6 +149,30 @@ function validate_credentials($email, $password, $connection){
 	else{
 		return False;
 	}
+}
+
+//Returns True if the user is logged in and false otherwise
+function logged_in(){
+	if(isset($_SESSION["logged_in"])){
+		if($_SESSION["logged_in"]){
+	    	return True;
+	    }
+	    else{
+	    	return False;
+	    }
+	}
+	else{
+		return False;
+	}
+}
+
+// Returns the connection object if the connection is made and false otherwise
+function connect(){
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
+	if(mysqli_connect_errno()){
+		return False;
+	}
+	return $connection;
 }
 
 ?>

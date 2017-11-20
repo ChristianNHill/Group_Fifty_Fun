@@ -14,14 +14,16 @@ function endsWith($haystack, $needle)
     (substr($haystack, -$length) === $needle);
 }
 
-$app_length = strlen("aqueous-coast-49377.herokuapp.com");
-$app_length = $app_length + 3;
+$app_length = strlen("aqueous-coast-49377.herokuapp.com") + 3;
 
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
-$length = strlen($escaped_url);
 
-if($length == $app_length or $length==17){	
+/* 
+Redirects to home page if the actual index page is trying to be reached
+The $length<=17 is for local server testing purposes
+*/
+if($length == $app_length or $length<=17){	
 	header('Location: home.php');
 }
 else if (!endsWith($escaped_url,".php")){
