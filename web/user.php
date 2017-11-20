@@ -50,14 +50,14 @@ class User{
         }
     } 
     /*
-	Arg1 us the email of the user
-	Arg2 is the password for the user
-	Arg3 is the connection
+	Arg1 is the name of the user
+	Arg2 is the email of the user
+	Arg3 is the password for the user
     */
-	function __construct3($e, $p, $c){
+	function __construct3($n, $e, $p){
+		$this->name = $n;
 		$this->email = $e;
 		$this->password = encrypt($p);
-		$this->connection = $c;
 	}
 	
 	// Prints the values of the user
@@ -144,6 +144,5 @@ function validate_credentials($email, $password, $connection){
 		return False;
 	}
 }
-
 
 ?>
