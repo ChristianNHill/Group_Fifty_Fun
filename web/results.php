@@ -4,14 +4,10 @@
 </head>
 <body>
 <?php 
-require "nav.php";
-require "../handlers/search.php";
-require "../user.php";
-require "../handlers/errorHandler.php";
-$connection = mysqli_connect(HOST, USER,PASS, DB);
-	if(mysqli_connect_errno()){
-		return False;
-	}
+require "views/nav.php";
+require "handlers/search.php";
+//require "../user.php";
+//require "../handlers/errorHandler.php";
 ?>
 <?php
 if(isset($_GET['search'])) {
