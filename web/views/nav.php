@@ -47,7 +47,7 @@ function logged_in(){
 	}
 	?>
 	</form>
-	<form class="form-inline my-2 my-lg-0" action='views/results.php' method='get'>
+	<form class="form-inline my-2 my-lg-0" action='results.php' method='get'>
 	  <input class="form-control mr-sm-2" name="search" type="text" placeholder="Search">
 	  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	</form>
