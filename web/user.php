@@ -1,5 +1,5 @@
 <?php
-   require($_SERVER['DOCUMENT_ROOT']."/../config.php");
+   //require($_SERVER['DOCUMENT_ROOT']."/../config.php");
 //require '../config.php';
 class User{
 	private $id = "NULL";
