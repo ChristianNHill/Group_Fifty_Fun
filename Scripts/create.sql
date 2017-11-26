@@ -3,6 +3,8 @@ id int( 11 ) NOT NULL AUTO_INCREMENT ,
 name varchar( 30 ) NOT NULL ,
 email varchar( 50 ) NOT NULL ,
 password varchar( 128 ) NOT NULL ,
+school_id int( 11 ) ,
+admin boolean DEFAULT False ,
 PRIMARY KEY ( id ) ,
 UNIQUE KEY id ( id ),
 UNIQUE KEY email ( email ) );
@@ -46,3 +48,7 @@ link_id int( 11 ) NOT NULL,
 user_id int( 11 ) NOT NULL, 
 PRIMARY KEY ( id ) ,
 UNIQUE KEY id ( id ) );
+
+CREATE TABLE if not exists linker (
+user_id int( 11 ) NOT NULL, 
+class_id int( 11 ) NOT NULL );

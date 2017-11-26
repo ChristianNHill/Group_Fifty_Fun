@@ -14,7 +14,7 @@ else
 echo "Successfully connected to MySQL \n";
 }
 
-include 'user.php';
+require '../web/user.php';
 
 $josh = new User("Josh Brown","jobr3255@colorado.edu","password");
 $josh->addNewUser($connection);
@@ -27,5 +27,14 @@ $chris->addNewUser($connection);
 
 $munta = new User("Muntadhar AlZayer","Muntadher.Alzayer@Colorado.edu","password");
 $munta->addNewUser($connection);
+
+$q = "update user set admin=true where id between 1 and 4;";
+if(mysqli_query($connection, $q)){
+	echo "set admins succeded \n";
+}
+else{
+	echo "set admins failed \n";
+}
+
 
 ?>
