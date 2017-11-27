@@ -12,6 +12,10 @@ require "views/nav.php";
 if(logged_in()){
 	?>
 	<h1>Welcome to your profile page, <?php echo $_SESSION["name"]; ?>!</h1><?php
+	if(isset($_SESSION["school_id"])){
+		echo "school is = ".$_SESSION["school_id"];
+	}
+
 }
 else{
 	?><h1>You are not logged in!</h1>
