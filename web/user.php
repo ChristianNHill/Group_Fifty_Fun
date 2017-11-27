@@ -1,11 +1,13 @@
 <?php
-   //require($_SERVER['DOCUMENT_ROOT']."/../config.php");
+   require($_SERVER['DOCUMENT_ROOT']."/../config.php");
 //require '../config.php';
 class User{
 	private $id = "NULL";
 	private $name = "NULL";
 	private $email = "NULL";
 	private $password = "NULL";
+	private $school_id = "NULL";
+	private $admin = "NULL";
 	private $connection = "NULL";
 
 	/*
@@ -36,6 +38,8 @@ class User{
 			$this->name = $row[1];
 			$this->email = $row[2];
 			$this->password = $row[3];
+			$this->school_id = $row[4];
+			$this->admin = $row[5];
 			$this->connection = $connection;
         }
         else{
@@ -46,6 +50,8 @@ class User{
 			$this->name = $row[1];
 			$this->email = $row[2];
 			$this->password = $row[3];
+			$this->school_id = $row[4];
+			$this->admin = $row[5];
 			$this->connection = $connection;
         }
     } 
@@ -64,6 +70,16 @@ class User{
 	function print_user(){
 		echo $this->id.", ".$this->name.", ".$this->email.", ".$this->password."\n";
 	} 
+
+	// Returns the school_id of the user
+	function getSchoolID(){
+		return $this->school_id;
+	}
+
+	// Returns the admin variable of the user
+	function getAdmin(){
+		return $this->admin;
+	}
 
 	// Returns the name of the user
 	function getName(){
@@ -113,8 +129,12 @@ class User{
 
 	// Sets the session variables for a user that is logged in
 	function log_in(){
+		$_SESSION["user"] = $this;
+		$_SESSION["id"] = $this->getID();
 		$_SESSION["name"] = $this->getName();
 		$_SESSION["email"] = $this->getEmail();
+		$_SESSION["school_id"] = $this->getSchoolID();
+		$_SESSION["admin"] = $this->getadmin();
 		$_SESSION["logged_in"] = True;
 	}
 
