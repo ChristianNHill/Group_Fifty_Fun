@@ -20,7 +20,10 @@ if(logged_in()){
 				$query = "select name from school where id=".$user->getID().";";
 				$result = mysqli_query($connection, $query);
 				$name = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+				echo "<form class='form-inline' action='school.php' method='get'> \n";
 				echo "School: ".$name;
+				echo "<p><button class='btn btn-outline-success' type='submit' name='unlink' >Unlink</button></p>\n";
+				echo "</form>";
 			}
 			else{
 				echo "Your school is not yet set";

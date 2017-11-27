@@ -14,7 +14,9 @@ if(isset($_GET['search'])) {
 	echo "\n";
 	?>
 	<p id="results">Showing results for: <?php echo $term; ?> </p> <?php echo "\n"; ?>
-	<div id="results"><?php require "handlers/search.php"; ?></div> <?php echo "\n";
+	<div id="results">
+	<?php require "handlers/search.php"; ?>
+	</div> <?php echo "\n";
 }
 ?>
 </body>
