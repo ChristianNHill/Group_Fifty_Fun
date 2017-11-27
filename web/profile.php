@@ -8,7 +8,7 @@ require "user.php";
 require "views/nav.php";
 ?>
 <?php
-
+$user = $_SESSION["user"];
 if(logged_in()){
 	?>
 	<h1>Welcome to your profile page, <?php echo $_SESSION["name"]; ?>!</h1><?php

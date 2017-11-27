@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php 
+/* 
+If you're going to include user.php in the same file as nav.php
+and you need to use the $_SESSION["user"] variable, make sure to include
+user.php before nav.php or there will be errors
+*/
+session_start(); 
+?>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">

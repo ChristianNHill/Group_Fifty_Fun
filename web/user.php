@@ -96,6 +96,25 @@ class User{
 		return $this->id;
 	}
 
+	// Sets the school_id for a user
+	function setSchoolID($sid){
+		$connection = mysqli_connect(HOST, USER,PASS, DB);
+		if($sid != NULL){
+			$query = "update user set school_id=".$sid." where id=".$this->id.";";
+		}
+		else{
+			$query = "update user set school_id=NULL where id=".$this->id.";";
+		}
+		if(mysqli_query($connection, $query)){
+			$this->school_id = $sid;
+			$_SESSION["school_id"] = $sid;
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 	//Adds user to the database
 	function addNewUser($connection){
 		$q = "INSERT INTO user (name, email, password) values ('$this->name', '$this->email', '$this->password');";
