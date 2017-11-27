@@ -6,12 +6,15 @@
 <?php 
 require "user.php";
 require "views/nav.php";
-function linked(){
+function linked($sid){
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$query = "select school_id from user where id=".$_SESSION["id"].";";
 	$result = mysqli_query($connection, $query);
 	$school_id = mysqli_fetch_array($result, MYSQLI_NUM)[0];
 	if($school_id == NULL){
+		return false;
+	}
+	else if($school_id != $sid){
 		return false;
 	}
 	else{
@@ -28,7 +31,7 @@ function load_options($id){
 	echo "<p>";
 	if(logged_in()){
 		echo "<form class='form-inline' action='school.php' method='get'> \n";
-		if(linked()){
+		if(linked($id)){
 			echo "<p>unlink school here</br><button class='btn btn-outline-success' type='submit' name='unlink' >Unlink</button></p>\n";
 		}
 		else{
