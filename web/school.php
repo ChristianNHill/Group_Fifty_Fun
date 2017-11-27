@@ -4,8 +4,8 @@
 </head>
 <body>
 <?php 
-require "views/nav.php";
 require "user.php";
+require "views/nav.php";
 function linked(){
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$query = "select school_id from user where id=".$_SESSION["id"].";";
@@ -20,6 +20,7 @@ function linked(){
 }
 
 function load_options($id){
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$query = "select name from school where id=".$id.";";
 	$result = mysqli_query($connection, $query);
 	$name = mysqli_fetch_array($result, MYSQLI_NUM)[0];
@@ -46,14 +47,27 @@ function load_options($id){
 //$name = $_REQUEST['name'];
 //echo $name;
 if(isset($_GET['link'])){
+	/*
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$query = "update user set school_id=".$_REQUEST['link']." where id=".$_SESSION["id"].";";
 	if(mysqli_query($connection, $query)){
 		echo "linked successfully";
 	}
-	load_options($_REQUEST['link']);
+	*/
+	$school_id = $_REQUEST['link'];
+	$user = $_SESSION["user"];
+	
+	if($user->setSchoolID($school_id)){
+		echo "linked successfully";
+	}
+	else{
+		echo "linked failed";
+	}
+	load_options($school_id);
 }
+
 if(isset($_GET['unlink'])){
+	/*
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$query = "select school_id from user where id=".$_SESSION["id"].";";
 	$result = mysqli_query($connection, $query);
@@ -62,7 +76,18 @@ if(isset($_GET['unlink'])){
 	if(mysqli_query($connection, $query)){
 		echo "unlinked successfully";
 	}
-	load_options($id);
+	*/
+	
+	$user = $_SESSION["user"];
+	$school_id = $user->getSchoolID();
+	
+	if($user->setSchoolID(NULL)){
+		echo "unlinked successfully";
+	}
+	else{
+		echo "unlinked failed";
+	}
+	load_options($school_id);
 
 }
 

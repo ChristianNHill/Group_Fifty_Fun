@@ -3,7 +3,7 @@ require($_SERVER['DOCUMENT_ROOT']."/../config.php");
 $errors = array();
 if(isset($_GET['search'])) {
 	$term = $_REQUEST['search'];
-	session_start();
+	//session_start();
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
 
 	$query = "select * from school where name rlike '".$term."';";
