@@ -11,10 +11,23 @@ require "views/nav.php";
 $user = $_SESSION["user"];
 if(logged_in()){
 	?>
-	<h1>Welcome to your profile page, <?php echo $_SESSION["name"]; ?>!</h1><?php
-	if(isset($_SESSION["school_id"])){
-		echo "school is = ".$_SESSION["school_id"];
-	}
+	<div id="profile">
+	<h1>Welcome to your profile page, <?php echo $_SESSION["name"]; ?>!</h1>
+		<p id="school_name">
+			<?php
+			if(isset($_SESSION["school_id"])){
+				$connection = mysqli_connect(HOST, USER,PASS, DB);
+				$query = "select name from school where id=".$user->getID().";";
+				$result = mysqli_query($connection, $query);
+				$name = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+				echo "School: ".$name;
+			}
+			else{
+				echo "Your school is not yet set";
+			}?>
+		</p>
+	</div>
+	<?php
 
 }
 else{
