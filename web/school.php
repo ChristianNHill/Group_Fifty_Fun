@@ -46,17 +46,7 @@ function load_options($id){
 }
 ?>
 <?php
-//$id = $_REQUEST['id'];
-//$name = $_REQUEST['name'];
-//echo $name;
 if(isset($_GET['link'])){
-	/*
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$query = "update user set school_id=".$_REQUEST['link']." where id=".$_SESSION["id"].";";
-	if(mysqli_query($connection, $query)){
-		echo "linked successfully";
-	}
-	*/
 	$school_id = $_REQUEST['link'];
 	$user = $_SESSION["user"];
 	
@@ -70,17 +60,6 @@ if(isset($_GET['link'])){
 }
 
 if(isset($_GET['unlink'])){
-	/*
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$query = "select school_id from user where id=".$_SESSION["id"].";";
-	$result = mysqli_query($connection, $query);
-	$id = mysqli_fetch_array($result, MYSQLI_NUM)[0];
-	$query = "update user set school_id=NULL where id=".$_SESSION["id"].";";
-	if(mysqli_query($connection, $query)){
-		echo "unlinked successfully";
-	}
-	*/
-	
 	$user = $_SESSION["user"];
 	$school_id = $user->getSchoolID();
 	
