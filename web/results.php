@@ -4,8 +4,8 @@
 </head>
 <body>
 <?php 
+require "user.php";
 require "views/nav.php";
-//require "../user.php";
 //require "../handlers/errorHandler.php";
 ?>
 <?php
