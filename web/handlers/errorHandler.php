@@ -14,7 +14,6 @@ function login_errors(){
 	$email = $_REQUEST['email']; 
 	$pass = $_REQUEST['password']; 
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$connection = connect();
 	if(!$connection){
 		$errors[] = "Failed to connect to the database";
 		exit;
@@ -32,6 +31,7 @@ function login_errors(){
 		$user->log_in();
 		header('Location: profile.php');
 	}
+	mysqli_close($connection);
 }
 
 function register_errors(){
@@ -40,7 +40,7 @@ function register_errors(){
 	$pass = $_REQUEST['password']; 
 	$rpass = $_REQUEST['rpassword']; 
 
-	$connection = connect();
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	if(!$connection){
 		$errors[] = "Failed to connect to the database";
 		exit;
@@ -58,6 +58,7 @@ function register_errors(){
 	if($pass != $rpass){
 		$errors[] = 'Passwords do not match!';
 	}
+	mysqli_close($connection);
 
 	if(empty($errors)){
 		$user = new User($name,$email,$pass);
