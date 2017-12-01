@@ -16,6 +16,7 @@ class_id int( 11 ) NOT NULL,
 title varchar( 30 ) NOT NULL ,
 content TEXT NOT NULL ,
 votes int( 11 ) ,
+date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 PRIMARY KEY ( id ) ,
 UNIQUE KEY id ( id ) );
 
