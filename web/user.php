@@ -108,10 +108,54 @@ class User{
 		if(mysqli_query($connection, $query)){
 			$this->school_id = $sid;
 			$_SESSION["school_id"] = $sid;
+			mysqli_close($connection);
 			return true;
 		}
 		else{
+			mysqli_close($connection);
 			return false;
+		}
+	}
+
+	// Returns a list of class ids that user has followed
+	function classList(){
+		$connection = mysqli_connect(HOST, USER,PASS, DB);
+		$query = "select class_id from linker where user_id=".$this->id.";";
+		$result = mysqli_query($connection, $query);
+		$class_list = array();
+		while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
+			array_push($class_list, $row[0]);
+		}
+		mysqli_close($connection);
+		return $class_list;
+	}
+
+	// Links the user to a class
+	function linkClass($class_id){
+		$connection = mysqli_connect(HOST, USER,PASS, DB);
+		$q = "INSERT INTO linker (user_id, class_id) values ('$this->id', '$class_id');";
+		if(mysqli_query($connection, $q)){
+			mysqli_close($connection);
+			return 1;
+		}
+		else{
+			mysqli_close($connection);
+			return 0;
+		}
+	}
+
+	// unlinks the user to a class
+	function unlinkClass($class_id){
+		$connection = mysqli_connect(HOST, USER,PASS, DB);
+		$q = "delete from linker where user_id=".$this->id." and class_id=$class_id;";
+		//echo $q;
+		if(mysqli_query($connection, $q)){
+			mysqli_close($connection);
+			return 1;
+		}
+		else{
+			mysqli_close($connection);
+			return 0;
 		}
 	}
 
@@ -191,13 +235,29 @@ function validate_credentials($email, $password, $connection){
 	}
 }
 
-// Returns the connection object if the connection is made and false otherwise
-function connect(){
+// Returns associative array of class variables
+function getClass($class_id){
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	if(mysqli_connect_errno()){
-		return False;
-	}
-	return $connection;
+	$query = "select * from class where id=$class_id;";
+	$result = mysqli_query($connection, $query);
+	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+	$class = array("id"=>$row[0], "name"=>$row[2], "department"=>$row[3], "class_code"=>$row[4]);
+	mysqli_close($connection);
+	return $class;
+}
+
+/* 
+Allows you to pass multiple variables to a page given the variables are an array
+Ex. 
+$vars = array('email' => "EMAIL", 'event_id' => "EVENT")
+$location = 'profile.php'
+will produce a url similar to http://localhost:8000/profile.php?email=EMAIL&event_id=EVENT
+*/
+function loadPageWith($vars, $loaction){
+	$querystring = http_build_query($vars);
+	$location = "profile.php";
+	$url = 'http://' . $_SERVER['HTTP_HOST']."/".$location."?".$querystring;
+	header('Location: '.$url);
 }
 
 ?>

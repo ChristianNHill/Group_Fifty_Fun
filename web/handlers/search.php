@@ -14,6 +14,7 @@ function school_results(){
 		}
 		echo "</form> \n </ul> \n";
 	}
+	mysqli_close($connection);
 	return $no_results;
 }
 
@@ -32,11 +33,12 @@ function class_results($school_id){
 		$no_results = false;
 		echo "<form class='form-inline' action='/../class.php' method='get'> \n <ul class='results'>\n";
 		while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
-			echo "<li><button class='btn btn-outline-success' type='submit' name='school' value='".$row[0]."'>".$row[2]."</br>".$row[3]." ".$row[4]."</button></li>\n";
+			echo "<li><button class='btn btn-outline-success' type='submit' name='class_id' value='".$row[0]."'>".$row[2]."</br>".$row[3]." ".$row[4]."</button></li>\n";
 			//echo "<p>".$row[2]." ".$row[3]."</br>".$row[4]."</p> \n";
 		}
 		echo "</form> \n </ul> \n";
 	}
+	mysqli_close($connection);
 	return $no_results;
 }
 
@@ -58,6 +60,11 @@ if(isset($_GET['search'])) {
 			$temp1 = class_results();
 			$no_results = $temp1 and $temp2;
 		}
+	}
+	else{
+		$temp1 = school_results();
+		$temp1 = class_results(NULL);
+		$no_results = $temp1 and $temp2;
 	}
 	
 	if($no_results){

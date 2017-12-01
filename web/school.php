@@ -11,6 +11,7 @@ function linked($sid){
 	$query = "select school_id from user where id=".$_SESSION["id"].";";
 	$result = mysqli_query($connection, $query);
 	$school_id = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+	mysqli_close($connection);
 	if($school_id == NULL){
 		return false;
 	}
@@ -43,6 +44,7 @@ function load_options($id){
 		echo "log in to link this school to your account";
 	}
 	echo "</p>";
+	mysqli_close($connection);
 }
 ?>
 <?php
@@ -74,7 +76,6 @@ if(isset($_GET['unlink'])){
 }
 
 if(isset($_GET['school'])) {
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$id = $_REQUEST['school'];
 	load_options($id);
 }
