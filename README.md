@@ -1,7 +1,7 @@
 ## GWOP GANG (Gangsters WithOut Prejudice)
 
 
-Colarborators
+Collaborators:
 
 Christian "Lady in the streets Data Scientist in the sheets" Hill
 
