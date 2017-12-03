@@ -12,10 +12,6 @@ require "views/nav.php";
 function load_school(){
 	echo "<p id='school_name'>";
 		if(isset($_SESSION["school"])){
-			//$connection = mysqli_connect(HOST, USER,PASS, DB) or  die("Could Not Connect to DB: ".mysql_error());
-			//$query = "select name from school where id=".$user->getID().";";
-			//$result = mysqli_query($connection, $query);
-			//$name = mysqli_fetch_array($result, MYSQLI_NUM)[0];
 			$name = $_SESSION["school"]["name"];
 			echo "<form class='form-inline' action='school.php' method='get'> \n";
 			echo "School: ".$name;
@@ -54,7 +50,6 @@ function load_classes(){
 }
 
 if(logged_in()){
-	//$user = $_SESSION["user"];
 	?>
 	<div id="profile">
 	<h1>Welcome to your profile page, <?php echo $_SESSION["name"]; ?>!</h1>

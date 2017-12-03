@@ -13,12 +13,6 @@ if(isset($_GET['register'])) {
 function login_errors(){
 	$email = $_REQUEST['email']; 
 	$pass = $_REQUEST['password']; 
-	/*
-	if(!$connection){
-		$errors[] = "Failed to connect to the database";
-		exit;
-	}
-	*/
 	if(!findEmail($email)){
 		$errors[] = "Email not found";
 		exit;
@@ -27,8 +21,6 @@ function login_errors(){
 		$errors[] = "Password incorrect";
 	}
 	else{
-		//$user = new User($email);
-		//$user->logIn();
 		logInUser($email);
 		header('Location: profile.php');
 	}

@@ -31,7 +31,6 @@ function class_results($school_id){
 		echo "<form class='form-inline' action='/../class.php' method='get'> \n <ul class='results'>\n";
 		while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
 			echo "<li><button class='btn btn-outline-success' type='submit' name='class_id' value='".$row[0]."'>".$row[2]."</br>".$row[3]." ".$row[4]."</button></li>\n";
-			//echo "<p>".$row[2]." ".$row[3]."</br>".$row[4]."</p> \n";
 		}
 		echo "</form> \n </ul> \n";
 	}
@@ -39,10 +38,14 @@ function class_results($school_id){
 }
 
 if(isset($_GET['search'])) {
-	//session_start();
 	$no_results = true;
 	if(isset($_SESSION["logged_in"])){
-		$school_id = $_SESSION["school"]["id"];
+		if(isset($_GET['school'])){
+			$school_id = $_SESSION["school"]["id"];
+		}
+		else{
+			$school_id = NULL;
+		}
 		if($school_id){
 			$temp1 = school_results();	
 			$temp2 = class_results($school_id);
