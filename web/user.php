@@ -1,14 +1,46 @@
 <?php
+/*
+encrypt($password)
+Encryps and returns password string
+
+validate_credentials($email, $password)
+Returns true if the user with the given email matches the password 
+
+findEmail($email)
+Returns true if an email exits in the database
+
+getClass($class_id)
+Returns associative array of class variables keys:id, name, department, class_code
+
+updateClassList($user_id)
+Updates the class_list session variable given user id
+
+updateSchool($user_id)
+Sets session variable school given a user_id
+
+logInUser($id_or_email)
+Sets session variables for a user given a users id or email
+
+Query error handler
+function query($query)
+
+printSession()
+Just a nice way to print session variables
+*/
+
+
    require($_SERVER['DOCUMENT_ROOT']."/../config.php");
 //require '../config.php';
 class User{
 	private $id = "NULL";
 	private $name = "NULL";
 	private $email = "NULL";
-	private $password = "NULL";
+	//private $password = "NULL";
 	private $school_id = "NULL";
+	private $school;// = NULL; //array();
 	private $admin = "NULL";
-	private $connection = "NULL";
+	//private $connection = "NULL";
+	private $class_list = array();
 
 	/*
 	This is the contructor for the user class calls either 
@@ -22,7 +54,35 @@ class User{
         if (method_exists($this,$f='__construct'.$i)) { 
             call_user_func_array(array($this,$f),$a); 
         } 
+    }
+
+	/*
+    Arg1 is the id or the email of the user to retrieve from the database
+    */
+    function __construct1($i) 
+    {
+    	$connection = mysqli_connect(HOST, USER,PASS, DB);
+    	$q = "select * from user where email = '$i';";
+        $result = mysqli_query($connection, $q);
+        if($result){
+        	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+        }
+        else{
+        	$q = "select * from user where id = $i;";
+        	$result = mysqli_query($connection, $q);
+        	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+        }
+		mysqli_close($connection);
+        $this->id = $row[0];
+		$this->name = $row[1];
+		$this->email = $row[2];
+		//$this->password = $row[3];
+		$this->school_id = $row[4];
+		$this->admin = $row[5];
+		//$this->connection = $connection;
+		$this->class_list = $this->classList();
     } 
+
     /*
     Arg1 is the id of the user to retrieve from the database
     or it can be the email of the user
@@ -30,18 +90,20 @@ class User{
     */
     function __construct2($i, $connection) 
     { 
-    	$q = "select * from user where email = '$i';";
+    	$q = "select * from user where email='$i' or id=$i;";
         $result = mysqli_query($connection, $q);
         if($result){
         	$row = mysqli_fetch_array($result, MYSQLI_NUM);
 			$this->id = $row[0];
 			$this->name = $row[1];
 			$this->email = $row[2];
-			$this->password = $row[3];
+			//$this->password = $row[3];
 			$this->school_id = $row[4];
 			$this->admin = $row[5];
-			$this->connection = $connection;
+			//$this->connection = $connection;
+			$this->class_list = $this->classList();
         }
+        /*
         else{
         	$q = "select * from user where id = $i;";
         	$result = mysqli_query($connection, $q);
@@ -49,11 +111,13 @@ class User{
 			$this->id = $row[0];
 			$this->name = $row[1];
 			$this->email = $row[2];
-			$this->password = $row[3];
+			//$this->password = $row[3];
 			$this->school_id = $row[4];
 			$this->admin = $row[5];
-			$this->connection = $connection;
+			//$this->connection = $connection;
+			$this->class_list = $this->classList();
         }
+        */
     } 
     /*
 	Arg1 is the name of the user
@@ -61,23 +125,26 @@ class User{
 	Arg3 is the password for the user
     */
 	function __construct3($n, $e, $p){
+		$connection = mysqli_connect(HOST, USER,PASS, DB);
+		/*
+		if(mysqli_connect_errno()){
+			$this->connection = mysqli_connect_error();
+		}
+		else{
+			$this->connection = $connection;
+		}*/
 		$this->name = $n;
 		$this->email = $e;
 		$this->password = encrypt($p);
 	}
-	
-	// Prints the values of the user
-	function print_user(){
-		echo $this->id.", ".$this->name.", ".$this->email.", ".$this->password."\n";
-	} 
 
 	// Returns the school_id of the user
 	function getSchoolID(){
 		return $this->school_id;
 	}
 
-	// Returns the admin variable of the user
-	function getAdmin(){
+	// Returns true if the user is an admin
+	function admin(){
 		return $this->admin;
 	}
 
@@ -101,6 +168,7 @@ class User{
 		$connection = mysqli_connect(HOST, USER,PASS, DB);
 		if($sid != NULL){
 			$query = "update user set school_id=".$sid." where id=".$this->id.";";
+
 		}
 		else{
 			$query = "update user set school_id=NULL where id=".$this->id.";";
@@ -160,13 +228,14 @@ class User{
 	}
 
 	//Adds user to the database
-	function addNewUser($connection){
+	function addNewUser(){
 		$q = "INSERT INTO user (name, email, password) values ('$this->name', '$this->email', '$this->password');";
-		if(mysqli_query($connection, $q)){
-			$id_query = "select max(id) from user;";
-			$result = mysqli_query($connection, $id_query);
+		if(mysqli_query($this->connection, $q)){
+			$id_query = "select id from user where email='$this->email';";
+			$result = mysqli_query($this->connection, $id_query);
 			$row = mysqli_fetch_array($result, MYSQLI_NUM);
 			$this->id = $row[0];
+			$this->admin = false;
 			return 1;
 		}
 		else{
@@ -191,14 +260,15 @@ class User{
 	}
 
 	// Sets the session variables for a user that is logged in
-	function log_in(){
-		$_SESSION["user"] = $this;
-		$_SESSION["id"] = $this->getID();
-		$_SESSION["name"] = $this->getName();
-		$_SESSION["email"] = $this->getEmail();
-		$_SESSION["school_id"] = $this->getSchoolID();
-		$_SESSION["admin"] = $this->getadmin();
+	function logIn(){
+		//$_SESSION["user"] = $this;
 		$_SESSION["logged_in"] = True;
+		$_SESSION["id"] = $this->id;
+		$_SESSION["name"] = $this->name;
+		$_SESSION["email"] = $this->email;
+		$_SESSION["school_id"] = $this->school_id;
+		$_SESSION["admin"] = $this->admin;
+		$_SESSION["class_list"] = $this->class_list;
 	}
 
 
@@ -209,10 +279,12 @@ function encrypt($password){
 }
 
 // Returns true if an email exits in the database
-function validate_email($email, $connection){
+function findEmail($email){
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$q = "select email from user where email = '$email';";
 	$result = mysqli_query($connection, $q);
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+	mysqli_close($connection);
     if(count($row) > 0){
     	return 1;
     }
@@ -223,10 +295,12 @@ function validate_email($email, $connection){
 
  
 //Returns true if the user with the given email matches the password 
-function validate_credentials($email, $password, $connection){
+function validate_credentials($email, $password){
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$q = "select email,password from user where email = '$email';";
 	$result = mysqli_query($connection, $q);
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+	mysqli_close($connection);
 	if($row[1] == encrypt($password)){
 		return True;
 	}
@@ -235,7 +309,7 @@ function validate_credentials($email, $password, $connection){
 	}
 }
 
-// Returns associative array of class variables
+// Returns associative array of class variables keys:id, name, department, class_code
 function getClass($class_id){
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	$query = "select * from class where id=$class_id;";
@@ -258,6 +332,99 @@ function loadPageWith($vars, $loaction){
 	$location = "profile.php";
 	$url = 'http://' . $_SERVER['HTTP_HOST']."/".$location."?".$querystring;
 	header('Location: '.$url);
+}
+
+// Updates the class_list session variable given user id
+function updateClassList($user_id){	
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
+	$query = "select class_id from linker where user_id=".$user_id.";";
+	$result = mysqli_query($connection, $query);
+	$class_list = array();
+	mysqli_close($connection);
+	while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
+		array_push($class_list, $row[0]);
+	}
+	$_SESSION["class_list"] = $class_list;
+}
+
+// Sets session variable school given a user_id
+function updateSchool($user_id){
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
+	//$query = "select school_id from user where user_id=$user_id;";
+	$result = query("select school_id from user where id=$user_id;");//mysqli_query($connection, $query);
+	//checkResult($result);
+	printSession();
+	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+	$school_id = $row[0];
+	if($school_id != NULL){
+		//$query = "select * from school where school_id=$school_id;";
+		$result = query("select * from school where id=$school_id;");//mysqli_query($connection, $query);
+		$row = mysqli_fetch_array($result, MYSQLI_NUM);
+		$school = array("id"=>$row[0], "name"=>$row[1]);
+		$_SESSION["school"] = $school;
+	}
+	else{
+		if(isset($_SESSION["school"])){
+			unset($_SESSION["school"]);
+		}
+	}
+}
+
+// Sets session variables for a user given a users id or email
+function logInUser($id_or_email){
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
+	if(mysqli_connect_errno()){
+		$_SESSION["error"] = "Log in error: ".mysqli_connect_error();
+		exit;
+	}
+	$query = "select id,name,email,school_id,admin from user where email='$id_or_email' or id='$id_or_email';";
+    $result = mysqli_query($connection, $query);
+    if($result){
+    	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+    	mysqli_close($connection);
+    	$_SESSION["logged_in"] = True;
+		$_SESSION["id"] = $row[0];
+		$_SESSION["name"] = $row[1];
+		$_SESSION["email"] = $row[2];
+		updateSchool($row[0]);
+		//$_SESSION["school_id"] = $row[3];
+		$_SESSION["admin"] = $row[4];
+		updateClassList($row[0]);
+		//$_SESSION["class_list"] = $this->class_list;
+    }
+    else{
+    	$_SESSION["error"] = "Log in query error: ".mysqli_error($connection);
+    }
+}
+
+// Query error handler
+function query($query){
+	if(isset($_SESSION["error"])){
+		unset($_SESSION["error"]);
+	}
+	$connection = mysqli_connect(HOST, USER,PASS, DB);
+	if(mysqli_connect_errno()){
+		$_SESSION["error"] = "Connection error: ".mysqli_connect_error();
+		mysqli_close($connection);
+		return false;
+	}
+	$result = mysqli_query($connection, $query);
+	if($result){
+		mysqli_close($connection);
+		return $result;
+	}
+	else{
+		$_SESSION["error"] = debug_backtrace()[1]['function'].": Error: ".mysqli_error($connection);
+		mysqli_close($connection);
+		return false;
+	}
+}
+
+// Just a nice way to print session variables
+function printSession(){
+	echo '<pre>';
+	var_dump($_SESSION);
+	echo '</pre>';
 }
 
 ?>

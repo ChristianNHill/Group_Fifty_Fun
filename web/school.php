@@ -6,16 +6,12 @@
 <?php 
 require "user.php";
 require "views/nav.php";
-function linked($sid){
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$query = "select school_id from user where id=".$_SESSION["id"].";";
-	$result = mysqli_query($connection, $query);
-	$school_id = mysqli_fetch_array($result, MYSQLI_NUM)[0];
-	mysqli_close($connection);
+function linked($school_id){
+	$id = $_SESSION["school"]["id"];
 	if($school_id == NULL){
 		return false;
 	}
-	else if($school_id != $sid){
+	else if($id != $school_id){
 		return false;
 	}
 	else{
@@ -24,10 +20,7 @@ function linked($sid){
 }
 
 function load_options($id){
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$query = "select name from school where id=".$id.";";
-	$result = mysqli_query($connection, $query);
-	$name = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+	$name = $_SESSION["school"]["name"];
 	echo "<h1 id='school_title'>".$name."</h1>";
 	echo "<p>";
 	if(logged_in()){
@@ -44,7 +37,6 @@ function load_options($id){
 		echo "log in to link this school to your account";
 	}
 	echo "</p>";
-	mysqli_close($connection);
 }
 ?>
 <?php
