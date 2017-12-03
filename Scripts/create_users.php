@@ -16,17 +16,13 @@ echo "Successfully connected to MySQL \n";
 
 require '../web/user.php';
 
-$josh = new User("Josh Brown","jobr3255@colorado.edu","password");
-$josh->addNewUser();
+addNewUser("Josh Brown","jobr3255@colorado.edu","password");
 
-$matt = new User("Matthew Donovan","matthew.donovan@colorado.edu","password");
-$matt->addNewUser();
+addNewUser("Matthew Donovan","matthew.donovan@colorado.edu","password");
 
-$chris = new User("Christian Hill","Christian.N.Hill@Colorado.edu","password");
-$chris->addNewUser();
+addNewUser("Christian Hill","Christian.N.Hill@Colorado.edu","password");
 
-$munta = new User("Muntadhar AlZayer","Muntadher.Alzayer@Colorado.edu","password");
-$munta->addNewUser();
+addNewUser("Muntadhar AlZayer","Muntadher.Alzayer@Colorado.edu","password");
 $connection = mysqli_connect (HOST, USER,PASS, DB);
 $q = "update user set admin=true where id between 1 and 4;";
 if(mysqli_query($connection, $q)){
