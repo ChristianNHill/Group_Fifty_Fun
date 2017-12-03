@@ -9,18 +9,7 @@ require "views/nav.php";
 ?>
 <?php
 
-function setClass($class_id){
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$query = "select * from class where id=$class_id;";
-	$result = mysqli_query($connection, $query);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-	$class = array("id"=>$row[0], "name"=>$row[2], "department"=>$row[3], "class_code"=>$row[4]);
-	mysqli_close($connection);
-	return $class;
-}
-
 function load_options($class_id){
-	//$user = $_SESSION["user"];
 	$class = getClass($class_id);
 	echo "<div id='class_display'>";
 	echo "<h1 id='class_title'>".$class['name']."</h1>";
@@ -44,7 +33,6 @@ function load_options($class_id){
 
 if(isset($_GET['link'])){
 	$class_id = $_REQUEST['link'];
-	//$user = $_SESSION["user"];
 	$class = getClass($class_id);
 	if(linkClass($class_id)){
 		echo "linked successfully";
@@ -57,7 +45,6 @@ if(isset($_GET['link'])){
 
 if(isset($_GET['unlink'])){
 	$class_id = $_REQUEST['unlink'];
-	//$user = $_SESSION["user"];
 	$class = getClass($class_id);
 	if(unlinkClass($class_id)){
 		echo "unlinked successfully";

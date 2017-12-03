@@ -122,14 +122,11 @@ function updateClassList(){
 
 // Sets session variable school for the current user
 function updateSchool(){
-	//$query = "select school_id from user where user_id=$user_id;";
 	$user_id = $_SESSION["id"];
-	$result = query("select school_id from user where id=$user_id;");//mysqli_query($connection, $query);
-	//checkResult($result);
+	$result = query("select school_id from user where id=$user_id;");
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
 	$school_id = $row[0];
 	if($school_id != NULL){
-		//$query = "select * from school where school_id=$school_id;";
 		$result = query("select * from school where id=$school_id;");
 		$row = mysqli_fetch_array($result, MYSQLI_NUM);
 		$school = array("id"=>$row[0], "name"=>$row[1]);
@@ -152,10 +149,8 @@ function logInUser($id_or_email){
 		$_SESSION["name"] = $row[1];
 		$_SESSION["email"] = $row[2];
 		updateSchool();
-		//$_SESSION["school_id"] = $row[3];
 		$_SESSION["admin"] = $row[4];
 		updateClassList();
-		//$_SESSION["class_list"] = $this->class_list;
     }
 }
 
@@ -180,6 +175,29 @@ function unlinkClass($class_id){
 	}
 	else{
 		return false;
+	}
+}
+
+// Links school to user that is logged in
+function linkSchool($school_id){
+	$user_id = $_SESSION["id"];
+	if($school_id == NULL){
+		if(query("update user set school_id=NULL where id=$user_id;")){
+			updateSchool();
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else{
+		if(query("update user set school_id=$school_id where id=$user_id;")){
+			updateSchool();
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
 

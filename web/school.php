@@ -7,7 +7,12 @@
 require "user.php";
 require "views/nav.php";
 function linked($school_id){
-	$id = $_SESSION["school"]["id"];
+	if(isset($_SESSION["school"])){
+		$id = $_SESSION["school"]["id"];
+	}
+	else{
+		$id = NULL;
+	}	
 	if($school_id == NULL){
 		return false;
 	}
@@ -20,7 +25,8 @@ function linked($school_id){
 }
 
 function load_options($id){
-	$name = $_SESSION["school"]["name"];
+	$row = mysqli_fetch_array(query("select name from school where id=$id"), MYSQLI_NUM);
+	$name = $row[0];
 	echo "<h1 id='school_title'>".$name."</h1>";
 	echo "<p>";
 	if(logged_in()){
@@ -42,9 +48,7 @@ function load_options($id){
 <?php
 if(isset($_GET['link'])){
 	$school_id = $_REQUEST['link'];
-	$user = $_SESSION["user"];
-	
-	if($user->setSchoolID($school_id)){
+	if(linkSchool($school_id)){
 		echo "linked successfully";
 	}
 	else{
@@ -54,17 +58,14 @@ if(isset($_GET['link'])){
 }
 
 if(isset($_GET['unlink'])){
-	$user = $_SESSION["user"];
-	$school_id = $user->getSchoolID();
-	
-	if($user->setSchoolID(NULL)){
+	$school_id = $_SESSION["school"]["id"];
+	if(linkSchool(NULL)){
 		echo "unlinked successfully";
 	}
 	else{
 		echo "unlinked failed";
 	}
 	load_options($school_id);
-
 }
 
 if(isset($_GET['school'])) {
