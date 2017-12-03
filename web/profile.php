@@ -9,13 +9,14 @@ require "views/nav.php";
 ?>
 <?php
 
-function load_school($user){
+function load_school(){
 	echo "<p id='school_name'>";
-		if(isset($_SESSION["school_id"])){
-			$connection = mysqli_connect(HOST, USER,PASS, DB) or  die("Could Not Connect to DB: ".mysql_error());
-			$query = "select name from school where id=".$user->getID().";";
-			$result = mysqli_query($connection, $query);
-			$name = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+		if(isset($_SESSION["school"])){
+			//$connection = mysqli_connect(HOST, USER,PASS, DB) or  die("Could Not Connect to DB: ".mysql_error());
+			//$query = "select name from school where id=".$user->getID().";";
+			//$result = mysqli_query($connection, $query);
+			//$name = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+			$name = $_SESSION["school"]["name"];
 			echo "<form class='form-inline' action='school.php' method='get'> \n";
 			echo "School: ".$name;
 			echo "<p><button class='btn btn-outline-success' type='submit' name='unlink' >Unlink</button></p>\n";
@@ -25,12 +26,16 @@ function load_school($user){
 			echo "Your school is not yet set";
 		}
 	echo "</p>";
-	mysqli_close($connection);
 }
 
-function load_classes($user){
+function load_classes(){
 	echo "<p id='class_list'>";
-	$class_list = $user->classList();
+	if(isset($_SESSION["class_list"])){
+		$class_list = $_SESSION["class_list"];
+	}
+	else{
+		$class_list = array();
+	}
 		if(!empty($class_list)){
 			echo "<form class='form-inline' action='class.php' method='get'> \n";
 			echo "<ul id='class_list'>";
@@ -38,7 +43,7 @@ function load_classes($user){
 				$class = getClass($class_list[$i]);
 				echo "<li>";
 				echo $class['name']." ".$class['department']." ".$class['class_code'];
-				echo "<button class='btn btn-outline-success' type='submit' name='unlink' >Unlink</button></li>\n";
+				echo "<button class='btn btn-outline-success' type='submit' name='unlink' value='".$class["id"]."' >Unlink</button></li>\n";
 			}
 			echo "</ul></form>";
 		}
@@ -48,14 +53,14 @@ function load_classes($user){
 	echo "</p>";
 }
 
-$user = $_SESSION["user"];
 if(logged_in()){
+	//$user = $_SESSION["user"];
 	?>
 	<div id="profile">
 	<h1>Welcome to your profile page, <?php echo $_SESSION["name"]; ?>!</h1>
 		<?php 
-		load_school($user);
-		load_classes($user);
+		load_school();
+		load_classes();
 		?>
 	</div>
 	<?php

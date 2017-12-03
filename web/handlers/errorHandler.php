@@ -13,25 +13,25 @@ if(isset($_GET['register'])) {
 function login_errors(){
 	$email = $_REQUEST['email']; 
 	$pass = $_REQUEST['password']; 
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
+	/*
 	if(!$connection){
 		$errors[] = "Failed to connect to the database";
 		exit;
 	}
-
-	if(!validate_email($email, $connection)){
+	*/
+	if(!findEmail($email)){
 		$errors[] = "Email not found";
 		exit;
 	}
-	if(!validate_credentials($email, $pass, $connection)){
+	if(!validate_credentials($email, $pass)){
 		$errors[] = "Password incorrect";
 	}
 	else{
-		$user = new User($email,$connection);
-		$user->log_in();
+		//$user = new User($email);
+		//$user->logIn();
+		logInUser($email);
 		header('Location: profile.php');
 	}
-	mysqli_close($connection);
 }
 
 function register_errors(){
@@ -40,17 +40,12 @@ function register_errors(){
 	$pass = $_REQUEST['password']; 
 	$rpass = $_REQUEST['rpassword']; 
 
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	if(!$connection){
-		$errors[] = "Failed to connect to the database";
+	if(strlen(trim($name))==0){
+		$errors[] = 'Name can not be blank!';
 		exit;
 	}
 
-	if(strlen(trim($name))==0){
-		$errors[] = 'Name can not be blank!';
-	}
-
-	if(validate_email($email, $connection)){
+	if(findEmail($email)){
 		$errors[] = "Email already taken";
 		exit;
 	}
@@ -58,13 +53,15 @@ function register_errors(){
 	if($pass != $rpass){
 		$errors[] = 'Passwords do not match!';
 	}
-	mysqli_close($connection);
 
 	if(empty($errors)){
-		$user = new User($name,$email,$pass);
-		$user->addNewUser($connection);
-		$user->log_in();
-		header('Location: profile.php');
+		if(addNewUser($name,$email,$pass)){
+			logInUser($email);
+			header('Location: profile.php');
+		}
+		else{
+			$errors[] = 'Error occured during register';
+		}
 	}
 }
 
