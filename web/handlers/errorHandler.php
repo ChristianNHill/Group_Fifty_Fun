@@ -55,10 +55,13 @@ function register_errors(){
 	}
 
 	if(empty($errors)){
-		$user = new User($name,$email,$pass);
-		$user->addNewUser();
-		$user->log_in();
-		header('Location: profile.php');
+		if(addNewUser($name,$email,$pass)){
+			logInUser($email);
+			header('Location: profile.php');
+		}
+		else{
+			$errors[] = 'Error occured during register';
+		}
 	}
 }
 

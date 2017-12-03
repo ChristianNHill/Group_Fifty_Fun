@@ -21,6 +21,12 @@ Sets session variable school given a user_id
 logInUser($id_or_email)
 Sets session variables for a user given a users id or email
 
+linkClass($class_id)
+Links a class to the user that is logged in
+
+unlinkClass($class_id)
+Unlinks a class to the user that is logged in
+
 Query error handler
 function query($query)
 
@@ -274,6 +280,16 @@ class User{
 
 }
 
+//Adds user to the database
+function addNewUser($name, $email, $password){
+	if(query("INSERT INTO user (name, email, password) values ('$name', '$email', '$password');")){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 function encrypt($password){
 	return md5($password);
 }
@@ -311,12 +327,12 @@ function validate_credentials($email, $password){
 
 // Returns associative array of class variables keys:id, name, department, class_code
 function getClass($class_id){
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$query = "select * from class where id=$class_id;";
-	$result = mysqli_query($connection, $query);
+	//$connection = mysqli_connect(HOST, USER,PASS, DB);
+	//$query = "select * from class where id=$class_id;";
+	$result = query("select * from class where id=$class_id;");//mysqli_query($connection, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
 	$class = array("id"=>$row[0], "name"=>$row[2], "department"=>$row[3], "class_code"=>$row[4]);
-	mysqli_close($connection);
+	//mysqli_close($connection);
 	return $class;
 }
 
@@ -334,26 +350,24 @@ function loadPageWith($vars, $loaction){
 	header('Location: '.$url);
 }
 
-// Updates the class_list session variable given user id
-function updateClassList($user_id){	
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$query = "select class_id from linker where user_id=".$user_id.";";
-	$result = mysqli_query($connection, $query);
+// Updates the class_list session variable for the current user
+function updateClassList(){	
+	$user_id = $_SESSION["id"];
+	$result = query("select class_id from linker where user_id=$user_id;");
 	$class_list = array();
-	mysqli_close($connection);
 	while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
 		array_push($class_list, $row[0]);
 	}
 	$_SESSION["class_list"] = $class_list;
 }
 
-// Sets session variable school given a user_id
-function updateSchool($user_id){
+// Sets session variable school for the current user
+function updateSchool(){
 	$connection = mysqli_connect(HOST, USER,PASS, DB);
 	//$query = "select school_id from user where user_id=$user_id;";
+	$user_id = $_SESSION["id"];
 	$result = query("select school_id from user where id=$user_id;");//mysqli_query($connection, $query);
 	//checkResult($result);
-	printSession();
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
 	$school_id = $row[0];
 	if($school_id != NULL){
@@ -372,29 +386,43 @@ function updateSchool($user_id){
 
 // Sets session variables for a user given a users id or email
 function logInUser($id_or_email){
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	if(mysqli_connect_errno()){
-		$_SESSION["error"] = "Log in error: ".mysqli_connect_error();
-		exit;
-	}
-	$query = "select id,name,email,school_id,admin from user where email='$id_or_email' or id='$id_or_email';";
-    $result = mysqli_query($connection, $query);
+    $result = query("select id,name,email,school_id,admin from user where email='$id_or_email' or id='$id_or_email';");
     if($result){
     	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-    	mysqli_close($connection);
     	$_SESSION["logged_in"] = True;
 		$_SESSION["id"] = $row[0];
 		$_SESSION["name"] = $row[1];
 		$_SESSION["email"] = $row[2];
-		updateSchool($row[0]);
+		updateSchool();
 		//$_SESSION["school_id"] = $row[3];
 		$_SESSION["admin"] = $row[4];
-		updateClassList($row[0]);
+		updateClassList();
 		//$_SESSION["class_list"] = $this->class_list;
     }
-    else{
-    	$_SESSION["error"] = "Log in query error: ".mysqli_error($connection);
-    }
+}
+
+// Links a class to the user that is logged in
+function linkClass($class_id){
+	$user_id = $_SESSION["id"];
+	if(query("INSERT INTO linker (user_id, class_id) values ('$user_id', '$class_id');")){
+		updateClassList();
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+// Unlinks a class to the user that is logged in
+function unlinkClass($class_id){
+	$user_id = $_SESSION["id"];
+	if(query("delete from linker where user_id=$user_id and class_id=$class_id;")){
+		updateClassList();
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 // Query error handler
