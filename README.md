@@ -1,4 +1,8 @@
+## GWOP GANG (Gangsters WithOut Prejudice)
+
+
 Colarborators
+
 Christian "Lady in the streets Data Scientist in the sheets" Hill
 
 Joshua "Bit Master" Brown
