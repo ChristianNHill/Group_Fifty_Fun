@@ -5,6 +5,7 @@
 <body>
 <?php 
 require "user.php";
+//require($_SERVER['DOCUMENT_ROOT']."/../config.php");
 require "views/nav.php";
 //require "../handlers/errorHandler.php";
 ?>
