@@ -65,7 +65,7 @@ else{
 	?><h1>You are not logged in!</h1>
 	<a href="login.php">Login here!</a><?php
 }
-printSession();
+
 ?>
 </body>
 </html>
