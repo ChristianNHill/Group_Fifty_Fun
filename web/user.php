@@ -61,11 +61,8 @@ function encrypt($password){
 
 // Returns true if an email exits in the database
 function findEmail($email){
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$q = "select email from user where email = '$email';";
-	$result = mysqli_query($connection, $q);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-	mysqli_close($connection);
+	$result = query("select email from user where email = '$email';");
+	$row = getArray($result);
     if(count($row) > 0){
     	return 1;
     }
@@ -77,11 +74,8 @@ function findEmail($email){
  
 //Returns true if the user with the given email matches the password 
 function validate_credentials($email, $password){
-	$connection = mysqli_connect(HOST, USER,PASS, DB);
-	$q = "select email,password from user where email = '$email';";
-	$result = mysqli_query($connection, $q);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);
-	mysqli_close($connection);
+	$result = query("select email,password from user where email = '$email';");
+	$row = getArray($result);
 	if($row[1] == encrypt($password)){
 		return True;
 	}
@@ -92,12 +86,9 @@ function validate_credentials($email, $password){
 
 // Returns associative array of class variables keys:id, name, department, class_code
 function getClass($class_id){
-	//$connection = mysqli_connect(HOST, USER,PASS, DB);
-	//$query = "select * from class where id=$class_id;";
-	$result = query("select * from class where id=$class_id;");//mysqli_query($connection, $query);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+	$result = query("select * from class where id=$class_id;");
+	$row = getArray($result);
 	$class = array("id"=>$row[0], "name"=>$row[2], "department"=>$row[3], "class_code"=>$row[4]);
-	//mysqli_close($connection);
 	return $class;
 }
 
@@ -120,7 +111,7 @@ function updateClassList(){
 	$user_id = $_SESSION["id"];
 	$result = query("select class_id from linker where user_id=$user_id;");
 	$class_list = array();
-	while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
+	while($row = getArray($result)){
 		array_push($class_list, $row[0]);
 	}
 	$_SESSION["class_list"] = $class_list;
@@ -234,6 +225,31 @@ function query($query){
 function getArray($result){
 	$row = mysqli_fetch_array($result, MYSQLI_NUM);
 	return $row;
+}
+
+// Sets the error session variable
+function setError($error_message){
+	$_SESSION["error"] = $error_message;
+}
+
+// Returns the error message in the error session variable
+function getError(){
+	if(errors()){
+		return $_SESSION["error"];
+	}
+	else{
+		return "";
+	}
+}
+
+// Returns true if there are any errors in the session
+function errors(){
+	if(isset($_SESSION["error"])){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 // Clears the error variable in the session

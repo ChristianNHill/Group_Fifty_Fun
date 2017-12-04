@@ -1,6 +1,4 @@
 <?php
-$errors = array();
-
 if(isset($_GET['login'])) {
 	login_errors();
 }
@@ -11,19 +9,21 @@ if(isset($_GET['register'])) {
 
 
 function login_errors(){
+	clearErrors();
 	$email = $_REQUEST['email']; 
-	$pass = $_REQUEST['password']; 
+	$pass = $_REQUEST['password'];
 	if(!findEmail($email)){
-		$errors[] = "Email not found";
-		exit;
+		setError("Email not found");
+		return;
 	}
-	if(!validate_credentials($email, $pass)){
-		$errors[] = "Password incorrect";
+		setError("Password incorrect");
+		return;
 	}
 	else{
 		logInUser($email);
 		header('Location: profile.php');
 	}
+
 }
 
 function register_errors(){
@@ -33,17 +33,17 @@ function register_errors(){
 	$rpass = $_REQUEST['rpassword']; 
 
 	if(strlen(trim($name))==0){
-		$errors[] = 'Name can not be blank!';
-		exit;
+		setError("Name can not be blank!");
+		return;
 	}
 
 	if(findEmail($email)){
-		$errors[] = "Email already taken";
-		exit;
+		setError("Email already taken");
+		return;
 	}
 
-	if($pass != $rpass){
-		$errors[] = 'Passwords do not match!';
+	if($pass != $rpass){		setError("Passwords do not match!");
+		return;
 	}
 
 	if(empty($errors)){
@@ -52,7 +52,8 @@ function register_errors(){
 			header('Location: profile.php');
 		}
 		else{
-			$errors[] = 'Error occured during register';
+			setError("Error occured during register");
+			return;
 		}
 	}
 }
