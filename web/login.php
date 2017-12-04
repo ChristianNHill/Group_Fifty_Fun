@@ -12,10 +12,9 @@ require "handlers/errorHandler.php";
 <form role="form" action="login.php" method="get">
     <h3>Login</h3>
     <?php 
-    if(!empty($errors)){
-    	foreach ($errors as $er){
-    		echo "<p id='errors'>$er</p>";
-    	}
+    if(errors()){
+    	$er = getError();
+    	echo "<p id='errors'>$er</p>";
     }
     ?>
     <div class="form-group">
