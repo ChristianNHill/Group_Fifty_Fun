@@ -30,6 +30,12 @@ Unlinks a class to the user that is logged in
 Query error handler
 function query($query)
 
+getArray($result)
+Returns an array given the result of a query
+
+clearErrors()
+Clears the error variable in the session
+
 printSession()
 Just a nice way to print session variables
 */
@@ -221,6 +227,19 @@ function query($query){
 		$_SESSION["error"] = debug_backtrace()[1]['function'].": Error: ".mysqli_error($connection);
 		mysqli_close($connection);
 		return false;
+	}
+}
+
+// Returns an array given the result of a query
+function getArray($result){
+	$row = mysqli_fetch_array($result, MYSQLI_NUM);
+	return $row;
+}
+
+// Clears the error variable in the session
+function clearErrors(){
+	if(isset($_SESSION["error"])){
+		unset($_SESSION["error"]);
 	}
 }
 
