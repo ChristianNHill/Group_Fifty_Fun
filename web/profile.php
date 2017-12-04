@@ -38,7 +38,9 @@ function load_classes(){
 			for($i=0; $i < sizeof($class_list); $i++){
 				$class = getClass($class_list[$i]);
 				echo "<li>";
-				echo $class['name']." ".$class['department']." ".$class['class_code'];
+				//echo $class['name']." ".$class['department']." ".$class['class_code'];
+				$button_display = $class['name']." ".$class['department']." ".$class['class_code'];
+				echo "<button class='btn btn-outline-success' type='submit' name='class_id' value='".$class['id']."'>$button_display</button>\n";
 				echo "<button class='btn btn-outline-success' type='submit' name='unlink' value='".$class["id"]."' >Unlink</button></li>\n";
 			}
 			echo "</ul></form>";
