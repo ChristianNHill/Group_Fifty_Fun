@@ -36,10 +36,10 @@ insert into comment (id, post_id, user_id, content)
 	(1, 3, 2, "Thanks"),
 	(2, 1, 2, "Yeah idk"),
 	(3, 1, 4, "I think phase 5 is extra credit anyway");
-insert into vote (id, link_id, user_id)
+insert into vote (id, link_id, user_id, value)
 	values
-	(1, 1, 2),
-	(2, 1, 3),
-	(3, 1, 4),
-	(4, 2, 1),
-	(5, 3, 3);
+	(1, 1, 2, 1),
+	(2, 1, 3, 1),
+	(3, 1, 4, 1),
+	(4, 2, 1, 1),
+	(5, 3, 3, 1);
