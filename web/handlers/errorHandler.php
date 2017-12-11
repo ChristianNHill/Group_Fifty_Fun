@@ -16,6 +16,7 @@ function login_errors(){
 		setError("Email not found");
 		return;
 	}
+	if(!validate_credentials($email, $pass)){
 		setError("Password incorrect");
 		return;
 	}
