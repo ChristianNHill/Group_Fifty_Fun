@@ -46,7 +46,8 @@ UNIQUE KEY id ( id ) );
 CREATE TABLE if not exists vote (
 id int( 11 ) NOT NULL AUTO_INCREMENT ,
 link_id int( 11 ) NOT NULL, 
-user_id int( 11 ) NOT NULL, 
+user_id int( 11 ) NOT NULL,
+value int( 11 ) NOT NULL, 
 PRIMARY KEY ( id ) ,
 UNIQUE KEY id ( id ) );
 
