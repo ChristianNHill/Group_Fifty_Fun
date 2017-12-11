@@ -1,0 +1,14 @@
+The group will test multiple aspects of Homework Underground
+The list is going to be:
+	1. The Register and Login page and their connection with the database
+	2. The Forum and the abilities that both posters and viewers can do
+	3. Admin abilities 
+All the tests will be using PHPUnit and other programs to expedite the testing
+
+1. This will be by testing the web/*.php files and their ability to move items to and from the database
+	This will be tested by verifying all the entries into the database and the limits of *.php file
+
+2. The forum will be populated and will be tested in order to verify that the user will be able to enter posts that s/he wishes to enter
+	We will test whether or not the php files can withstand the height of posts during finals
+
+3. The administrator should be able to remove any posts, and verifying that the adminstrator will be allowed those abilities will help the testing
