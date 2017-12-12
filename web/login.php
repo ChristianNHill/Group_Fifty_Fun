@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-<?php
-require "user.php";
-require "views/nav.php";
-require "handlers/errorHandler.php";
-?>
-<div class="container">
-<form role="form" action="login.php" method="get">
-    <h3>Login</h3>
-    <?php 
+    <html>
+        <head>
+        </head>
+        <body>
+            <?php
+                require "user.php";
+                require "views/nav.php";
+                require "handlers/errorHandler.php";
+            ?>
+            <div class="container">
+            <form role="form" action="login.php" method="get">
+            <h3>Login</h3>
+                <?php 
     if(errors()){
     	$er = getError();
     	echo "<p id='errors'>$er</p>";
