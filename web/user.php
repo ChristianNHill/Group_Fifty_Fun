@@ -154,13 +154,17 @@ function logInUser($id_or_email){
 // Links a class to the user that is logged in
 function linkClass($class_id){
 	$user_id = $_SESSION["id"];
-	if(query("INSERT INTO linker (user_id, class_id) values ('$user_id', '$class_id');")){
-		updateClassList();
-		return true;
+	$class_list = $_SESSION["class_list"];
+	if(!in_array($class_id, $class_list)){
+		if(query("INSERT INTO linker (user_id, class_id) values ('$user_id', '$class_id');")){
+			updateClassList();
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
-	else{
-		return false;
-	}
+	return false;
 }
 
 // Unlinks a class to the user that is logged in
