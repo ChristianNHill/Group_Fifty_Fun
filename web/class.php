@@ -18,10 +18,12 @@ function load_options($class_id){
 		echo "<form class='form-inline' action='class.php' method='get'> \n";
 		$class_list = $_SESSION["class_list"];
 		if(in_array($class_id, $class_list)){
-			echo "<p>unfollow class here</br><button class='btn btn-outline-success' type='submit' name='unlink' value='".$class_id."' >Unfollow</button></p>\n";
+			echo "<p></br><button class='btn btn-outline-success' type='submit' name='unlink' value='".$class_id."' >Unfollow</button></p>\n";
+			echo "<input type='hidden' name='class_id' value='$class_id'  />";
 		}
 		else{
-			echo "<p>follow this class here</br><button class='btn btn-outline-success' type='submit' name='link' value='".$class_id."' >Follow</button></p>\n";
+			echo "<p></br><button class='btn btn-outline-success' type='submit' name='link' value='".$class_id."' >Follow</button></p>\n";
+			echo "<input type='hidden' name='class_id' value='$class_id'  />";
 		}
 		echo "</form> \n";
 	}
@@ -35,30 +37,28 @@ if(isset($_GET['link'])){
 	$class_id = $_REQUEST['link'];
 	$class = getClass($class_id);
 	if(linkClass($class_id)){
-		echo "linked successfully";
+		//echo "linked successfully";
 	}
 	else{
-		echo "linked failed";
+		//echo "linked failed";
 	}
 	load_options($class_id);
 }
-
-if(isset($_GET['unlink'])){
+else if(isset($_GET['unlink'])){
 	$class_id = $_REQUEST['unlink'];
 	$class = getClass($class_id);
 	if(unlinkClass($class_id)){
-		echo "unlinked successfully";
+		//echo "unlinked successfully";
 	}
 	else{
-		echo "unlinked failed";
+		//echo "unlinked failed";
 	}
 	load_options($class_id);
 }
-
-if(isset($_GET['class_id'])){
+else if(isset($_GET['class_id'])){
 	load_options($_REQUEST['class_id']);
 }
-
+require "forum.php";
 ?>
 </body>
 </html>
