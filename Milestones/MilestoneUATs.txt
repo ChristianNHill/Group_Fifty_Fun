@@ -3,6 +3,8 @@ The list is going to be:
 	1. The Register and Login page and their connection with the database
 	2. The Forum and the abilities that both posters and viewers can do
 	3. Admin abilities 
+	4. Proper connections between php files and http files
+	5. uniform 
 All the tests will be using PHPUnit and other programs to expedite the testing
 
 1. This will be by testing the web/*.php files and their ability to move items to and from the database
