@@ -488,6 +488,17 @@ h1.page-h {
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+	 <?php
+        require "user.php";
+        require "views/nav.php";
+        require "handlers/errorHandler.php";
+     ?>
+     <?php 
+    if(errors()){
+    	$er = getError();
+    	echo "<p id='errors'>$er</p>";
+    }
+    ?>
 <div class="container-fluid">
     		<nav class="navbar navbar-default navbar-fixed-top">
    				<div class="container-fluid">
@@ -588,14 +599,14 @@ h1.page-h {
 					            <p id="profile-name" class="profile-name-card"></p>
 					            <form class="form-signin">
 					                <span id="reauth-email" class="reauth-email"></span>
-					                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-					                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+					                <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
+					                <input name="password" type="password" class="form-control" placeholder="Password" required>
 					                <div id="remember" class="checkbox">
 					                    <label>
 					                        <input type="checkbox" value="remember-me"> Remember me
 					                    </label>
 					                </div>
-					                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+					               <button class="btn btn-success btn-lg pull-right" name="login" type="submit">Login</button>
 					            </form><!-- /form -->
 					            <a href="#" class="forgot-password">
 					                Forgot the password?
@@ -622,8 +633,8 @@ h1.page-h {
 						                <span id="reauth-email" class="reauth-email"></span>
 						                <input type="text" id="firstName" class="form-control" placeholder="First Name" required="required" autofocus="autofocus">
 						                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required="required">
-						                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-						                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+						                <input type="email" 200maxlength="" name="email" class="form-control" placeholder="Email address" required="required">
+						                <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
 						                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
 						                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign Up</button>
 						            </form><!-- /form -->
