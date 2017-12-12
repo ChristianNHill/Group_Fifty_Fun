@@ -10,7 +10,7 @@
 		echo "MISSING POST ID";
 	}
 
-	$user_id = $_SESSION['user_id'];
+	$user_id = $_SESSION['id'];
 
 	$query = "select * from comment where post_id=$post_id;";
 	$query2 = "select * from post where id=$post_id;";
@@ -68,12 +68,13 @@ tr {
 	
 	if (isset($_GET['newcomment'])) {
 		$newcom = $_GET['newcomment'];
+		//$user_id = $_SESSION['id'];
 		$sql = "INSERT INTO comment (post_id,user_id,content) VALUES ($post_id,$user_id,'$newcom');";
 		query($sql);
 	} else {
 		//echo "no new comment yet dood";
 	}
-	echo getError();
+	//echo getError();
 ?>
 
 <div>
