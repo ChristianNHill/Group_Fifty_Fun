@@ -4,7 +4,7 @@ The list is going to be:
 	2. The Forum and the abilities that both posters and viewers can do
 	3. Admin abilities 
 	4. Proper connections between php files and http files
-	5. uniform 
+	5. uniform graphics and header on all of the pages
 All the tests will be using PHPUnit and other programs to expedite the testing
 
 1. This will be by testing the web/*.php files and their ability to move items to and from the database
@@ -14,3 +14,7 @@ All the tests will be using PHPUnit and other programs to expedite the testing
 	We will test whether or not the php files can withstand the height of posts during finals
 
 3. The administrator should be able to remove any posts, and verifying that the adminstrator will be allowed those abilities will help the testing
+
+4. confirm the connection between the two parts of the application
+
+5. make sure that all pages call the header
