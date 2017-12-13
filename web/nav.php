@@ -1,4 +1,12 @@
+<?php
+	 if(session_status()!= 2){
 
+	    session_start();
+	 }
+        require "user.php";
+        require "handlers/errorHandler.php";
+
+     ?>
 	<meta name="Homework Underground" content="Homework help website">
     <meta name="Group" content="Group 51, AKA Group Fifty Fun, AKA Area 51, AKA The Chocolate Lads, AKA 4 Single Moms, AKA Guwop Gang (Gangsters WithOut Prejudice) ">
     <meta name="robots" content="index, follow">
@@ -12,6 +20,7 @@ h1.page-h {
 }
 .sidebar {
      padding-left: 0;
+     height: 1000px;
 }
 .main-container { 
   background: #FFF;
@@ -79,7 +88,6 @@ h1.page-h {
 	background-color: #f3f3f3;
 }
 .side-menu #dropdown .
-
 
 
 
@@ -486,12 +494,7 @@ h1.page-h {
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	 <?php
-	    session_start();
-        require "user.php";
-        require "handlers/errorHandler.php";
-
-     ?>
+	 
      <?php 
     if(errors()){
     	$er = getError();
@@ -584,11 +587,10 @@ function load_classes(){
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
-						<form class="form-inline my-2 my-lg-0"  action='HUresults.php' method='get'>
+						<form class="form-inline my-2 my-lg-0"  action='results.php' method='get'>
 	 			 		<input class="form-control mr-sm-2" name="search" action="HUresults.php" type="text" placeholder="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 						</form>
-						<form class="form-inline" action='handlers/logoutHandler.php' method='get'>
 							<ul class="nav navbar-nav navbar-right">
 								<?php
 					                if(!logged_in()){
@@ -598,7 +600,9 @@ function load_classes(){
 						               <?php             	
 					                }
 					                else{
-					               	   echo "<button class='btn btn-success btn-lg pull-right' name='logout' type='submit'>Logout</button>";
+					                	echo "<form class='form-inline' action='handlers/logoutHandler.php' method='get'>";
+					               	    echo "<button class='btn btn-success btn-lg pull-right' name='logout' type='submit'>Logout</button>";
+					               	    echo "</form>";
 					                }
 					               ?>
 							</ul>
@@ -606,7 +610,7 @@ function load_classes(){
 				</div>
 			</nav>  	
 			<div class="container-fluid main-container">
- 				<div class="col-md-2 sidebar">
+ 				<div class="col-md-2 sidebar" >
 	 				<div class="row">
 						<div class="absolute-wrapper"> </div>
 							<!-- Menu -->
@@ -652,9 +656,8 @@ function load_classes(){
 							 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -40px; margin-right: -35px;"><font color="red" size="6">
 							 <span aria-hidden="true">&times;</span></font></button>
 					            
-					            <img id="profile-img" class="profile-img-card" src="img_chania.jpg" />
 					            <p id="profile-name" class="profile-name-card"></p>
-					            <form class="form-signin">
+					            <form class="form-signin" action='home.php' method='get'>
 					                <span id="reauth-email" class="reauth-email"></span>
 					                <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
 					                <input name="password" type="password" class="form-control" placeholder="Password" required>
@@ -684,7 +687,6 @@ function load_classes(){
 								 <div class="card card-container">
 								 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -40px; margin-right: -35px;"><font color="red" size="6"><span aria-hidden="true">&times;</span></font></button>
 						            
-						            <img id="profile-img" class="profile-img-card" src="cinqueterre.jpg" />
 						            <p id="profile-name" class="profile-name-card"></p>
 						            <form class="form-signin">
 						                <span id="reauth-email" class="reauth-email"></span>
