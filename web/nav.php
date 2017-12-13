@@ -15,6 +15,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         
+.errors{
+	font-weight: bold;
+	color: red;
+}
+
 h1.page-h {
   margin-top: -5px;
 }
@@ -87,9 +92,7 @@ h1.page-h {
 	padding: 0;
 	background-color: #f3f3f3;
 }
-.side-menu #dropdown .
-
-
+.side-menu #dropdown .{
 
 
 
@@ -490,8 +493,13 @@ h1.page-h {
     color: #FA8072;
 }
     </style>
+
+
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
 </head>
 <body>
 	 
@@ -557,152 +565,104 @@ function load_classes(){
 }
 ?>
 <div class="container-fluid">
-    		<nav class="navbar navbar-default navbar-fixed-top">
-   				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
-						<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
+	<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
+				<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 
-						<a class="navbar-brand" href="home.php">
-							<?php
-								if(logged_in()){
-									echo $_SESSION["name"];
-								}
-								else{
-									echo "Homework Underground";
-								}
-							?>
-							
-						</a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
-						<form class="form-inline my-2 my-lg-0"  action='results.php' method='get'>
-	 			 		<input class="form-control mr-sm-2" name="search" action="HUresults.php" type="text" placeholder="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-						</form>
-							<ul class="nav navbar-nav navbar-right">
-								<?php
-					                if(!logged_in()){
-					                	?>
-						               <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-						               <li><a href="#" data-toggle="modal" data-target="#mySignUpModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						               <?php             	
-					                }
-					                else{
-					                	echo "<form class='form-inline' action='handlers/logoutHandler.php' method='get'>";
-					               	    echo "<button class='btn btn-success btn-lg pull-right' name='logout' type='submit'>Logout</button>";
-					               	    echo "</form>";
-					                }
-					               ?>
-							</ul>
-					</div>
-				</div>
-			</nav>  	
-			<div class="container-fluid main-container">
- 				<div class="col-md-2 sidebar" >
-	 				<div class="row">
-						<div class="absolute-wrapper"> </div>
-							<!-- Menu -->
-							<div class="side-menu">
-								<nav class="navbar navbar-default" role="navigation">
-									<!-- Main Menu -->
-									<div class="side-menu-container">
-										<ul class="nav navbar-nav">
-											<li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-											<li><a href="forum.php"><span class="glyphicon glyphicon-plane"></span> Forum</a></li>
-											<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
-											<!-- Dropdown-->
-											<li class="panel panel-default" id="dropdown">
-												<a data-toggle="collapse" href="#dropdown-lvl1">
-													<span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-												</a>
-												<!-- Dropdown level 1 -->
-												<div id="dropdown-lvl1" class="panel-collapse collapse">
-													<div class="panel-body">
-														<ul class="nav navbar-nav">
-															<li><a href="#">Link</a></li>
-															<li><a href="#">Link</a></li>
-															<li><a href="#">Link</a></li>
-														</ul>
-													</div>
-												</div>
-											</li>
-											<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-										</ul>
-									</div><!-- /.navbar-collapse -->
-								</nav>
-							</div>
-						</div>  		
-					</div>
+				<a class="navbar-brand" href="home.php">
+					<?php
+						if(logged_in()){
+							echo $_SESSION["name"];
+						}
+						else{
+							echo "Homework Underground";
+						}
+					?>
 					
-			<!-- Login Modal Dialog -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content" style="height: 0px;width: 0px;">
-						
-						<div class="modal-body" >
-							 <div class="card card-container">
-							 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -40px; margin-right: -35px;"><font color="red" size="6">
-							 <span aria-hidden="true">&times;</span></font></button>
-					            
-					            <p id="profile-name" class="profile-name-card"></p>
-					            <form class="form-signin" action='home.php' method='get'>
-					                <span id="reauth-email" class="reauth-email"></span>
-					                <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
-					                <input name="password" type="password" class="form-control" placeholder="Password" required>
-					                <div id="remember" class="checkbox">
-					                    <label>
-					                        <input type="checkbox" value="remember-me"> Remember me
-					                    </label>
-					                </div>
-					                <button class="btn btn-success btn-lg pull-right" name="login" type="submit">Login</button>
-					            </form><!-- /form -->
-					            <a href="#" class="forgot-password">
-					                Forgot the password?
-					            </a>
-					        </div><!-- /card-container -->
-						</div>
-						
-					</div>
-				</div>
-				</div>
-				<!-- Sign Up Modal dialog -->
-				<!-- Login Modal Dialog -->
-				<div class="modal fade" id="mySignUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content" style="height: 0px;width: 0px;">
-							
-							<div class="modal-body" >
-								 <div class="card card-container">
-								 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -40px; margin-right: -35px;"><font color="red" size="6"><span aria-hidden="true">&times;</span></font></button>
-						            
-						            <p id="profile-name" class="profile-name-card"></p>
-						            <form class="form-signin">
-						                <span id="reauth-email" class="reauth-email"></span>
-						                <input type="text" id="firstName" class="form-control" placeholder="First Name" required="required" autofocus="autofocus">
-						                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required="required">
-						                <input type="email" 200maxlength="" name="email" class="form-control" placeholder="Email address" required="required">
-						                <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
-						                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
-						                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign Up</button>
-						            </form><!-- /form -->
-						        </div><!-- /card-container -->
-							</div>
-							
-						</div>
-					</div>
+				</a>
 			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
+				<form class="form-inline my-2 my-lg-0"  action='results.php' method='get'>
+			 		<input class="form-control mr-sm-2" name="search" action="HUresults.php" type="text" placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				
+				</form>
+					<ul class="nav navbar-nav navbar-right">
+						<?php
+			                if(!logged_in()){
+			                	?>
+			                	<form class='form-inline' action='login.php' method='get'>
+				               <button type='submit'><span class="glyphicon glyphicon-log-in"></span> Login</button>
+				               </form>
+				               <form class='form-inline' action='register.php' method='get'>
+				               <button type='submit'><span class="glyphicon glyphicon-user"></span> Sign Up</submit>
+				               </form>
+				               <?php             	
+			                }
+			                else{
+			                	echo "<form class='form-inline' action='handlers/logoutHandler.php' method='get'>";
+			               	    echo "<button class='btn btn-success btn-lg pull-right' name='logout' type='submit'>Logout</button>";
+			               	    echo "</form>";
+			                }
+			               ?>
+					</ul>
+			</div>
+		</div>
+
+
+
+	</nav>  	
+	<div class="container-fluid main-container">
+			<div class="col-md-2 sidebar" >
+				<div class="row">
+				<div class="absolute-wrapper"> </div>
+					<!-- Menu -->
+					<div class="side-menu">
+						<nav class="navbar navbar-default" role="navigation">
+							<!-- Main Menu -->
+							<div class="side-menu-container">
+								<ul class="nav navbar-nav">
+									<li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+									<li><a href="forum.php"><span class="glyphicon glyphicon-plane"></span> Forum</a></li>
+									<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
+									<!-- Dropdown-->
+									<li class="panel panel-default" id="dropdown">
+										<a data-toggle="collapse" href="#dropdown-lvl1">
+											<span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="dropdown-lvl1" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li><a href="#">Link</a></li>
+													<li><a href="#">Link</a></li>
+													<li><a href="#">Link</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+								</ul>
+							</div><!-- /.navbar-collapse -->
+						</nav>
+					</div>
+				</div>  		
+			</div>
+	
+
 <script type="text/javascript">
 $(function () {
     $('.navbar-toggle-sidebar').click(function () {

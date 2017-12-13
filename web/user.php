@@ -101,7 +101,7 @@ will produce a url similar to https://localhost:8000/profile.php?email=EMAIL&eve
 */
 function loadPageWith($vars, $loaction){
 	$querystring = https_build_query($vars);
-	$location = "profile.php";
+	$location = "home.php";
 	$url = 'https://' . $_SERVER['https_HOST']."/".$location."?".$querystring;
 	header('Location: '.$url);
 }

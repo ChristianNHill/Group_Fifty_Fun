@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-        </head>
-        <body>
+<html lang="en">
+<head>
+
             <?php
-                require "user.php";
-                require "views/nav.php";
-                require "handlers/errorHandler.php";
+                //require "user.php";
+                require "nav.php";
+                //require "handlers/errorHandler.php";
             ?>
             <div class="container">
             <form role="form" action="login.php" method="get">
@@ -14,7 +13,7 @@
                 <?php 
     if(errors()){
     	$er = getError();
-    	echo "<p id='errors'>$er</p>";
+    	echo "<div class='errors'>$er</div>";
     }
     ?>
     <div class="form-group">

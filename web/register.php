@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-</head>
-<body>
+
+
 <?php
-require "user.php";
-require "views/nav.php";
-require "handlers/errorHandler.php";
+//require "user.php";
+require "nav.php";
+//require "handlers/errorHandler.php";
 ?>
+
+
 <div class="container">
 <form role="form" action="register.php" method="get">
     <h3>Sign up</h3>
     <?php 
     if(errors()){
     	$er = getError();
-    	echo "<p id='errors'>$er</p>";
+    	echo "<div class='errors'>$er</div>";
     }
     ?>
     <div class="form-group">

@@ -1,4 +1,5 @@
 <?php
+clearErrors();
 if(isset($_GET['login'])) {
 	login_errors();
 }
@@ -22,7 +23,8 @@ function login_errors(){
 	}
 	else{
 		logInUser($email);
-		header('Location: profile.php');
+		header('Location: home.php');
+		exit();
 	}
 
 }
@@ -50,7 +52,7 @@ function register_errors(){
 	if(empty($errors)){
 		if(addNewUser($name,$email,$pass)){
 			logInUser($email);
-			header('Location: profile.php');
+			header('Location: home.php');
 		}
 		else{
 			setError("Error occured during register");
