@@ -20,17 +20,30 @@
 	color: red;
 }
 
+.logout-button{
+	background-color:lightgray; 
+	color:salmon; 
+	border:none;
+}
+
+.logout-button:hover{
+	background-color:lightgray; 
+	border:none;
+	color: black;
+}
+
 h1.page-h {
   margin-top: -5px;
 }
 .sidebar {
      padding-left: 0;
+     margin-right: 20px;
      height: 1000px;
 }
 .main-container { 
   background: #FFF;
   padding-top: 69px;
-  margin-top: 0px;
+  margin-top: 20px;
 	}
 .footer {
   width: 100%;
@@ -614,7 +627,7 @@ function load_classes(){
 			                }
 			                else{
 			                	echo "<form class='form-inline' action='handlers/logoutHandler.php' method='get'>";
-			               	    echo "<button class='btn btn-success btn-lg pull-right' name='logout' type='submit'>Logout</button>";
+			               	    echo "<button class='btn btn-success btn-lg pull-right logout-button' name='logout' type='submit'>Logout</button>";
 			               	    echo "</form>";
 			                }
 			               ?>
@@ -636,8 +649,7 @@ function load_classes(){
 							<div class="side-menu-container">
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-									<li><a href="forum.php"><span class="glyphicon glyphicon-plane"></span> Forum</a></li>
-									<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
+									<li><a href="home.php"><span class="glyphicon glyphicon-plane"></span> Home</a></li>
 									<!-- Dropdown-->
 									<li class="panel panel-default" id="dropdown">
 										<a data-toggle="collapse" href="#dropdown-lvl1">
@@ -666,7 +678,6 @@ function load_classes(){
 											</div>
 										</div>
 									</li>
-									<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
 								</ul>
 							</div><!-- /.navbar-collapse -->
 						</nav>
