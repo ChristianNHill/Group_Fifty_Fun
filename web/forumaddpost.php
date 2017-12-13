@@ -1,15 +1,14 @@
-<DOCTYPE html>
-<html>
-<head>
+
 <?php
 	require "user.php";
-	require "views/nav.php";
+	//require "views/nav.php";
 	if (isset($_GET['class_id'])) {
 		$classid = $_REQUEST['class_id'];
+		$query = "select * from post where class_id=$classid;";
 	} else {
 		echo "MISSING CLASS ID";
+		$query = "select * from post;";
 	}
-	$query = "select * from post;";
 	$result = query($query);
 ?>
 
@@ -34,19 +33,17 @@ tr {
 
 </style>
 
-</head>
-<title>HW Underground</title>
+<?php
+echo "
 
-<body class="container-fluid" >
-<form action="forumaddpost.php" method="get">
-	<button style="padding:10px"; width="20%">Create new post<strong>+</strong></button></br></br>
+<form action='post.php' method='get'>
   	<table>
   		<tr>
-  			<td width="7.5%">
+  			<td width='7.5%'>
  			Title:   
  			</td>
  			<td>
- 			<input type="text" name="title" min="1" max="50" placeholder="Post title" size="51"></input></br>
+ 			<input type='text' name='title' min='1' max='50' placeholder='Post title' size='51' required='required' ></input></br>
  			</td>
  		</tr>
  		<tr>
@@ -54,34 +51,18 @@ tr {
   			Content: 
   			</td>
   			<td>
-  			<textarea name="content" placeholder="Type your submission here" rows="10" cols="50"></textarea>
+  			<textarea name='content' placeholder='Type your submission here' rows='10' cols='50' required='required'></textarea>
+  			<input type='hidden' name='class_id' value='$classid' />
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button type='submit' onclick='' >Submit</button>
 			</td>
 		</tr>
 	</table>
  </form>
 </br></br>
-</div>
-
-
-<!--fill with forum posts from database-->
-<div>
-	<form action="post.php" method="get">
-	<?php
-	while($row  = mysqli_fetch_array($result, MYSQLI_NUM)) {
-		echo "<table>";
-		echo "<tr>";
-		echo "<td style='width:7.5%; text-align:center'>";
-		echo "<table><tr><button>up </button></tr>".$row[5]."<tr><button> down</button></tr></table>";
-		echo "</td>";
-		echo "<td style='width10%; text-align:center'>";
-		echo $row[6];
-		echo "</td>";
-		echo "<td style='width:82.5%'><button class='nut' style='padding:20px;' type='submit' name='post_id' value='".$row[0]."'>".$row[3]."</button></td>";
-		echo "</tr>";
-		echo "</table>";
-	}
+</div>";
 ?>
-	</form>
-</div>
-</body>
-</html>
