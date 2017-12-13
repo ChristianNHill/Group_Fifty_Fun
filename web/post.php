@@ -4,13 +4,22 @@
 <?php
 	require 'user.php';
 	require "views/nav.php";
+
+	$user_id = $_SESSION['id'];
+
 	if (isset($_GET['post_id'])) {
 		$post_id = $_REQUEST['post_id'];
 	} else {
-		echo "MISSING POST ID";
+		if(isset($_GET['title']) and isset($_GET['content'])){
+			$class_id = $_REQUEST['class_id'];
+			$title = $_REQUEST['title'];
+			$content = $_REQUEST['content'];
+			query("insert into post (user_id, class_id, title, content, votes) values ($user_id, $class_id, '$title', '$content', 0);");
+			$idResult = query("select max(id) from post;");
+			$post_id = (getArray($idResult))[0];
+		}
 	}
 
-	$user_id = $_SESSION['user_id'];
 
 	$query = "select * from comment where post_id=$post_id;";
 	$query2 = "select * from post where id=$post_id;";
@@ -68,12 +77,11 @@ tr {
 	
 	if (isset($_GET['newcomment'])) {
 		$newcom = $_GET['newcomment'];
-		$sql = "INSERT INTO comment (post_id,user_id,content) VALUES ($post_id,$user_id,'$newcom');";
-		query($sql);
-	} else {
-		//echo "no new comment yet dood";
+		$sql = "INSERT INTO comment (post_id,user_id,content) VALUES ($post_id,$user_id,\"$newcom\");";
+		if(!query($sql)){
+			echo getError();
+		}
 	}
-	echo getError();
 ?>
 
 <div>
