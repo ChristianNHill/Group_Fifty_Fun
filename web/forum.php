@@ -1,13 +1,12 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
 function openNewPost(str){
 	if (str == "") {
         document.getElementById("new-post-area").innerHTML = "";
         return;
-    } else { 
-        if (window.XMLhttpsRequest) {
+    } else {
+        if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttps = new XMLhttpsRequest();
+            xmlhttps = new XMLHttpRequest();
         } else {
             // code for IE6, IE5
             xmlhttps = new ActiveXObject("Microsoft.XMLhttps");
@@ -26,10 +25,9 @@ function upVote(str){
         document.getElementById("displayVotes").innerHTML = "";
         return;
     } else { 
-	alert(window.XMLhttpsRequest);
-        if (window.XMLhttpsRequest) {
+        if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttps = new XMLhttpsRequest();
+            xmlhttps = new XMLHttpRequest();
         } else {
             // code for IE6, IE5
             xmlhttps = new ActiveXObject("Microsoft.XMLhttps");
@@ -59,9 +57,9 @@ function downVote(str){
         document.getElementById("displayVotes").innerHTML = "";
         return;
     } else { 
-        if (window.XMLhttpsRequest) {
+        if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttps = new XMLhttpsRequest();
+            xmlhttps = new XMLHttpRequest();
         } else {
             // code for IE6, IE5
             xmlhttps = new ActiveXObject("Microsoft.XMLhttps");

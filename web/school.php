@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-</head>
-<body>
 <?php 
-require "user.php";
-require "views/nav.php";
+//require "user.php";
+require "nav.php";
+
 function linked($school_id){
 	if(isset($_SESSION["school"])){
 		$id = $_SESSION["school"]["id"];
