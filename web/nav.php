@@ -641,15 +641,27 @@ function load_classes(){
 									<!-- Dropdown-->
 									<li class="panel panel-default" id="dropdown">
 										<a data-toggle="collapse" href="#dropdown-lvl1">
-											<span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+											<span class="glyphicon glyphicon-user"></span> Classes <span class="caret"></span>
 										</a>
 										<!-- Dropdown level 1 -->
 										<div id="dropdown-lvl1" class="panel-collapse collapse">
 											<div class="panel-body">
 												<ul class="nav navbar-nav">
-													<li><a href="#">Link</a></li>
-													<li><a href="#">Link</a></li>
-													<li><a href="#">Link</a></li>
+													<?php	
+													$usid = $_SESSION["id"];
+													$class_list = $_SESSION["class_list"];
+													$i = 0;
+													while ($num = $class_list[$i]) {
+														$query = "select * from class where id=$num;";
+														$result = query($query);
+														while ($row = getArray($result)) {
+															echo "<form method='get' action='class.php'>";
+															echo "<li><button name='class_id' value='$row[0]'>  $row[2] </button></li> ";
+															echo "</form>";
+														}
+														$i++;
+													}
+												?>
 												</ul>
 											</div>
 										</div>
