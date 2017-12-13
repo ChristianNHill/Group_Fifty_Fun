@@ -12,7 +12,7 @@
     <meta name="robots" content="index, follow">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         
 h1.page-h {
@@ -490,8 +490,8 @@ h1.page-h {
     color: #FA8072;
 }
     </style>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	 

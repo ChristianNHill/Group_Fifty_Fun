@@ -14,20 +14,20 @@ function openNewPost(str){
         document.getElementById("new-post-area").innerHTML = "";
         return;
     } else { 
-        if (window.XMLHttpRequest) {
+        if (window.XMLhttpsRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
+            xmlhttps = new XMLhttpsRequest();
         } else {
             // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttps = new ActiveXObject("Microsoft.XMLhttps");
         }
-        xmlhttp.onreadystatechange = function() {
+        xmlhttps.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("new-post-area").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","forumaddpost.php?class_id="+str,true);
-        xmlhttp.send();
+        xmlhttps.open("GET","forumaddpost.php?class_id="+str,true);
+        xmlhttps.send();
     }
 }
 function upVote(str){
@@ -35,14 +35,14 @@ function upVote(str){
         document.getElementById("displayVotes").innerHTML = "";
         return;
     } else { 
-        if (window.XMLHttpRequest) {
+        if (window.XMLhttpsRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
+            xmlhttps = new XMLhttpsRequest();
         } else {
             // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttps = new ActiveXObject("Microsoft.XMLhttps");
         }
-        xmlhttp.onreadystatechange = function() {
+        xmlhttps.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("displayVotes").innerHTML = this.responseText;
                 var up_image = document.getElementById("upvote-button").getAttribute("src");
@@ -58,8 +58,8 @@ function upVote(str){
                 document.getElementById("downvote-button").setAttribute("src", "images/downarrow-not-voted.png");
             }
         };
-        xmlhttp.open("GET","voteHandler.php?up="+str,true);
-        xmlhttp.send();
+        xmlhttps.open("GET","voteHandler.php?up="+str,true);
+        xmlhttps.send();
     }
 }
 function downVote(str){
@@ -67,14 +67,14 @@ function downVote(str){
         document.getElementById("displayVotes").innerHTML = "";
         return;
     } else { 
-        if (window.XMLHttpRequest) {
+        if (window.XMLhttpsRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
+            xmlhttps = new XMLhttpsRequest();
         } else {
             // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttps = new ActiveXObject("Microsoft.XMLhttps");
         }
-        xmlhttp.onreadystatechange = function() {
+        xmlhttps.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("displayVotes").innerHTML = this.responseText;
                 var down_image = document.getElementById("downvote-button").getAttribute("src");
@@ -87,8 +87,8 @@ function downVote(str){
                 document.getElementById("upvote-button").setAttribute("src", "images/uparrow-not-voted.png");
             }
         };
-        xmlhttp.open("GET","voteHandler.php?down="+str,true);
-        xmlhttp.send();
+        xmlhttps.open("GET","voteHandler.php?down="+str,true);
+        xmlhttps.send();
     }
 }
 </script>
