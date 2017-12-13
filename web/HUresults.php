@@ -586,7 +586,7 @@ function load_classes(){
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
 						<form class="form-inline my-2 my-lg-0"  method='get'>
-	 			 		<input class="form-control mr-sm-2" name="search" action="HUresults.php" type="text" placeholder="Search">
+	 			 		<input class="form-control mr-sm-2" name="search" type="text" placeholder="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 						</form>
 							<ul class="nav navbar-nav navbar-right">
@@ -616,7 +616,7 @@ function load_classes(){
 									<div class="side-menu-container">
 										<ul class="nav navbar-nav">
 											<li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-											<li><a href="forum.php"><span class="glyphicon glyphicon-plane"></span> Forum</a></li>
+											<li><a href="forum.php"><span class="glyphicon glyphicon-plane"></span>Forum</a></li>
 											<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
 											<!-- Dropdown-->
 											<li class="panel panel-default" id="dropdown">
@@ -647,13 +647,8 @@ function load_classes(){
 								Dashboard
 							</div>
 							<div class="panel-body">
+								
 								<h1><?php
-								load_school();
-								load_classes();
-								?></h1>
-
-								<h1>Content</h1>
-								<?php
 									if(isset($_GET['search'])) {
 										$term = $_REQUEST['search'];
 										echo "\n";
@@ -663,7 +658,7 @@ function load_classes(){
 										<?php require "handlers/search.php"; ?>
 										</div> <?php echo "\n";
 									}
-										?>
+										?></h1>
 								<br><br><br><br><br><br><br><br>
 								<br><br><br><br><br><br><br><br>
 								<br><br><br><br><br><br><br><br>
