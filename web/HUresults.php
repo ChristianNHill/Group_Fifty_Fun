@@ -571,7 +571,7 @@ function load_classes(){
 							<span class="icon-bar"></span>
 						</button>
 
-						<a class="navbar-brand" href="HUSite.php">
+						<a class="navbar-brand" href="home.php">
 							<?php
 								if(logged_in()){
 									echo $_SESSION["name"];
@@ -616,7 +616,7 @@ function load_classes(){
 									<div class="side-menu-container">
 										<ul class="nav navbar-nav">
 											<li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-											<li><a href="forum.php"><span class="glyphicon glyphicon-plane"></span>Forum</a></li>
+											<li><a href="forum.php"><span class="glyphicon glyphicon-plane"></span> Forum</a></li>
 											<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
 											<!-- Dropdown-->
 											<li class="panel panel-default" id="dropdown">

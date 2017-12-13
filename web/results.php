@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-</head>
-<body>
-<?php 
-require "user.php";
-require "views/nav.php";
-?>
+
 <?php
+require "views/nav.php";
+
 if(isset($_GET['search'])) {
 	$term = $_REQUEST['search'];
 	echo "\n";
@@ -18,5 +15,6 @@ if(isset($_GET['search'])) {
 	</div> <?php echo "\n";
 }
 ?>
+
 </body>
 </html>
