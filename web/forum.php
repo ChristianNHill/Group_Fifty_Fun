@@ -1,13 +1,4 @@
-<DOCTYPE html>
-<html>
-<head>
-
-
-</head>
-<title>HW Underground</title>
-
-<body class="container-fluid" >
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
 function openNewPost(str){
 	if (str == "") {
@@ -35,6 +26,7 @@ function upVote(str){
         document.getElementById("displayVotes").innerHTML = "";
         return;
     } else { 
+	alert(window.XMLhttpsRequest);
         if (window.XMLhttpsRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttps = new XMLhttpsRequest();
@@ -162,6 +154,3 @@ echo "
 		echo "</div>";
 	}
 ?>
-</div>
-</body>
-</html>
