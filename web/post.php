@@ -3,7 +3,6 @@
 <head>
 <?php
 	require 'user.php';
-	require "views/nav.php";
 
 	$user_id = $_SESSION['id'];
 

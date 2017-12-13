@@ -30,7 +30,7 @@ function class_results($school_id){
 		$no_results = false;
 		echo "<form class='form-inline' action='/../class.php' method='get'> \n <ul class='results'>\n";
 		while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
-			echo "<li><button class='btn btn-outline-success' type='submit' name='class_id' value='".$row[0]."'>".$row[2]."</br>".$row[3]." ".$row[4]."</button></li>\n";
+			echo "<li><button class='btn btn-outline-success' type='submit' name='class_id' value='".$row[0]."'>".$row[2]." ".$row[3]." ".$row[4]."</button></li>\n";
 		}
 		echo "</form> \n </ul> \n";
 	}
