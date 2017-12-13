@@ -20,11 +20,6 @@
 		}
 	}
 
-<<<<<<< HEAD
-	$user_id = $_SESSION['id'];
-=======
->>>>>>> matt
-
 	$query = "select * from comment where post_id=$post_id;";
 	$query2 = "select * from post where id=$post_id;";
 	$result2 = query($query2);
@@ -81,21 +76,11 @@ tr {
 	
 	if (isset($_GET['newcomment'])) {
 		$newcom = $_GET['newcomment'];
-<<<<<<< HEAD
-		//$user_id = $_SESSION['id'];
-		$sql = "INSERT INTO comment (post_id,user_id,content) VALUES ($post_id,$user_id,'$newcom');";
-		query($sql);
-	} else {
-		//echo "no new comment yet dood";
-	}
-	//echo getError();
-=======
 		$sql = "INSERT INTO comment (post_id,user_id,content) VALUES ($post_id,$user_id,\"$newcom\");";
 		if(!query($sql)){
 			echo getError();
 		}
 	}
->>>>>>> matt
 ?>
 
 <div>
