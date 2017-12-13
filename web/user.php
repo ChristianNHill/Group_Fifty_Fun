@@ -97,12 +97,12 @@ Allows you to pass multiple variables to a page given the variables are an array
 Ex. 
 $vars = array('email' => "EMAIL", 'event_id' => "EVENT")
 $location = 'profile.php'
-will produce a url similar to http://localhost:8000/profile.php?email=EMAIL&event_id=EVENT
+will produce a url similar to https://localhost:8000/profile.php?email=EMAIL&event_id=EVENT
 */
 function loadPageWith($vars, $loaction){
-	$querystring = http_build_query($vars);
+	$querystring = https_build_query($vars);
 	$location = "profile.php";
-	$url = 'http://' . $_SERVER['HTTP_HOST']."/".$location."?".$querystring;
+	$url = 'https://' . $_SERVER['https_HOST']."/".$location."?".$querystring;
 	header('Location: '.$url);
 }
 
