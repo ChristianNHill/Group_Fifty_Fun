@@ -2,10 +2,19 @@
 <html>
 <head>
 </head>
+<style>
+div{
+	margin: 20px;
+}
+</style>
 <body>
 <?php 
 require "views/nav.php";
 ?>
-<h1>Welcome!</h1>
+<div>
+	<h3>Welcome</h3>
+	<ol>
+	</ol>
+</div>
 </body>
 </html>
