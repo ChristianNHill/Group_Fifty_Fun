@@ -52,5 +52,8 @@ PRIMARY KEY ( id ) ,
 UNIQUE KEY id ( id ) );
 
 CREATE TABLE if not exists linker (
+id int( 11 ) NOT NULL AUTO_INCREMENT ,
 user_id int( 11 ) NOT NULL, 
-class_id int( 11 ) NOT NULL );
+class_id int( 11 ) NOT NULL,
+PRIMARY KEY ( id ) ,
+UNIQUE KEY id ( id ) );
