@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-</head>
-<body>
 <?php 
-require "user.php";
-require "views/nav.php";
+//require "user.php";
+require "nav.php";
 ?>
 <?php
 
@@ -58,7 +56,9 @@ else if(isset($_GET['unlink'])){
 else if(isset($_GET['class_id'])){
 	load_options($_REQUEST['class_id']);
 }
+echo "<div>";
 require "forum.php";
+echo "</div>";
 ?>
 </body>
 </html>

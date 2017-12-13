@@ -3,7 +3,7 @@
 <head>
 
 <?php
-require "views/nav.php";
+require "nav.php";
 
 if(isset($_GET['search'])) {
 	$term = $_REQUEST['search'];

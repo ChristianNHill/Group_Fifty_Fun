@@ -1,43 +1,7 @@
 <DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-<style>
-
-table{
-    border: 1px solid black;
-    table-layout: fixed;
-    width: 100%;
-}
-
-tr {
-	margin-top: 20px;
-	margin-bottom:20px;
-}
-
-.nut{
-	width:100%;
-}
-
-.button{
-    background: url(images/uparrow-not-voted.png) no-repeat;
-    cursor:pointer;
-    border: none;
-    background-size: 20px 20px;
-}
-
-.test {
-  background-image: url(images/uparrow-not-voted.png);
-  background-repeat: no-repeat;
-  /* background-position: 50% 50%; */
-  /* put the height and width of your image here */
-  height: 20px;
-  width: 20px;
-  border: none;
-}
-
-</style>
 
 </head>
 <title>HW Underground</title>
@@ -142,7 +106,7 @@ if (isset($_GET['class_id'])) {
 $result = query($query);
 
 echo "
-<button style='padding:10px' width='20%' name='$classid' value='$classid' onclick='openNewPost(this.name)' >Create new post<strong>+</strong></button>
+<button name='$classid' value='$classid' onclick='openNewPost(this.name)' >Create new post<strong>+</strong></button>
 <div id='new-post-area'></div>
 </br></br>
 </div>";
