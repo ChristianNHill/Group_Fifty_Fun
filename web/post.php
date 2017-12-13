@@ -16,7 +16,8 @@
 			$content = $_REQUEST['content'];
 			query("insert into post (user_id, class_id, title, content, votes) values ($user_id, $class_id, '$title', '$content', 0);");
 			$idResult = query("select max(id) from post;");
-			$post_id = (getArray($idResult))[0];
+			$post_id_row = getArray($idResult);
+			$post_id = $post_id_row[0];
 		}
 	}
 
