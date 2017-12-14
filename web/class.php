@@ -56,7 +56,7 @@ else if(isset($_GET['unlink'])){
 else if(isset($_GET['class_id'])){
 	load_options($_REQUEST['class_id']);
 }
-echo "<div>";
+echo "<div class='container'>";
 require "forum.php";
 echo "</div>";
 ?>

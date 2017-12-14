@@ -31,6 +31,9 @@
 	border:none;
 	color: black;
 }
+.container{
+	padding-left: 200px;
+}
 
 h1.page-h {
   margin-top: -5px;
@@ -44,6 +47,7 @@ h1.page-h {
   background: #FFF;
   padding-top: 69px;
   margin-top: 20px;
+     height: 100%;
 	}
 .footer {
   width: 100%;
@@ -64,6 +68,7 @@ h1.page-h {
   border-radius: 0;
   background-color: transparent;
   box-shadow: none;
+     height: 100%;
 }
 .side-menu #dropdown .caret {
   float: right;
@@ -77,9 +82,11 @@ h1.page-h {
 	display: block;
 	width: 100%;
 	border-bottom: 1px solid #000000;
+     height: 100%;
 }
 .side-menu .navbar-nav li a {
 	padding: 15px;
+     height: 100%;
 }
 .side-menu .navbar-nav li a .glyphicon {
 	padding-right: 10px;
@@ -87,10 +94,12 @@ h1.page-h {
 
 .side-menu .navbar {
 	border: none;
+     height: 100%;
 }
 .side-menu .navbar-header {
 	width: 100%;
 	border-bottom: 1px solid #e7e7e7;
+     height: 100%;
 }
 .side-menu .navbar-nav .active a {
 	background-color: transparent;
@@ -577,22 +586,11 @@ function load_classes(){
 	echo "</p>";
 }
 ?>
-<div class="container-fluid">
+<div class="container-fluid" style=' height:100%; '>
 	<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
-				<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
+				
 
 				<a class="navbar-brand" href="home.php">
 					<?php

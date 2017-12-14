@@ -9,7 +9,7 @@ if(isset($_GET['search'])) {
 	$term = $_REQUEST['search'];
 	echo "\n";
 	?>
-	<div id="results">
+	<div class='container'>
 	<p id="results">Showing results for: <?php echo $term; ?> </p> <?php echo "\n"; ?>
 	<?php require "handlers/search.php"; ?>
 	</div> <?php echo "\n";
