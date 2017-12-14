@@ -109,7 +109,7 @@ echo "
 	//$row = getArray($result);
 	while($row = getArray($result)) {
 		//echo $query;
-		echo "<div class='post-list' >";
+		echo "<div class='post-list container' >";
 		$post_id = $row[0];
 		$votes = $row[5];
 		
