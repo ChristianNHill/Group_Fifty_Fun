@@ -34,18 +34,18 @@ function upVote(str){
         }
         xmlhttps.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("displayVotes").innerHTML = this.responseText;
-                var up_image = document.getElementById("upvote-button").getAttribute("src");
+                document.getElementById("displayVotes-"+str).innerHTML = this.responseText;
+                var up_image = document.getElementById("upvote-button-"+str).getAttribute("src");
                 //document.getElementById("downvote-button").setAttribute("src", "images/downarrow-not-voted.png");
                 //alert("here");
                 //alert(up_image);
                 if(up_image.match("uparrow-not-voted")){
-                	document.getElementById("upvote-button").setAttribute("src", "images/uparrow-voted.png");
+                	document.getElementById("upvote-button-"+str).setAttribute("src", "images/uparrow-voted.png");
                 }
                 else if(up_image.match("uparrow-voted")){
-                	document.getElementById("upvote-button").setAttribute("src", "images/uparrow-not-voted.png");
+                	document.getElementById("upvote-button-"+str).setAttribute("src", "images/uparrow-not-voted.png");
                 }
-                document.getElementById("downvote-button").setAttribute("src", "images/downarrow-not-voted.png");
+                document.getElementById("downvote-button-"+str).setAttribute("src", "images/downarrow-not-voted.png");
             }
         };
         xmlhttps.open("GET","voteHandler.php?up="+str,true);
@@ -66,15 +66,15 @@ function downVote(str){
         }
         xmlhttps.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("displayVotes").innerHTML = this.responseText;
-                var down_image = document.getElementById("downvote-button").getAttribute("src");
+                document.getElementById("displayVotes-"+str).innerHTML = this.responseText;
+                var down_image = document.getElementById("downvote-button-"+str).getAttribute("src");
                 if(down_image.match("downarrow-not-voted")){
-                	document.getElementById("downvote-button").setAttribute("src", "images/downarrow-voted.png");
+                	document.getElementById("downvote-button-"+str).setAttribute("src", "images/downarrow-voted.png");
                 }
                 else if(down_image.match("downarrow-voted")){
-                	document.getElementById("downvote-button").setAttribute("src", "images/downarrow-not-voted.png");
+                	document.getElementById("downvote-button-"+str).setAttribute("src", "images/downarrow-not-voted.png");
                 }
-                document.getElementById("upvote-button").setAttribute("src", "images/uparrow-not-voted.png");
+                document.getElementById("upvote-button-"+str).setAttribute("src", "images/uparrow-not-voted.png");
             }
         };
         xmlhttps.open("GET","voteHandler.php?down="+str,true);
@@ -137,9 +137,9 @@ echo "
 		echo "<table>
 				<tr>
 					<td style='width:7.5%; text-align:center'>";
-						echo "<input type='image' name='$post_id' id='upvote-button' src='images/$up_image' width='20' height='20' onclick='upVote(this.name)' />
-						<div id='displayVotes'>$votes</div>
-						<input type='image' name='$post_id' id='downvote-button' src='images/$down_image' width='20' height='20' onclick='downVote(this.name)' />";
+						echo "<input type='image' name='$post_id' id='upvote-button-$post_id' src='images/$up_image' width='20' height='20' onclick='upVote(this.name)' />
+						<div id='displayVotes-$post_id'>$votes</div>
+						<input type='image' name='$post_id' id='downvote-button-$post_id' src='images/$down_image' width='20' height='20' onclick='downVote(this.name)' />";
 			  echo "</td>
 				<td style='width10%; text-align:center'> \n";
 		echo $row[6];
