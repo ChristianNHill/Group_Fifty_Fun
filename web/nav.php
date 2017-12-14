@@ -38,7 +38,7 @@ h1.page-h {
 .sidebar {
      padding-left: 0;
      margin-right: 20px;
-     height: 1000000px;
+     height: 100%;
 }
 .main-container { 
   background: #FFF;
