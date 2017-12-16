@@ -1,15 +1,15 @@
-## GWOP GANG (Gangsters WithOut Prejudice)
-
+![Picture]https://ibb.co/i8gnS6
+##
 
 Collaborators:
 
-Christian "Lady in the streets Data Scientist in the sheets" Hill
+Christian Hill
 
-Joshua "Bit Master" Brown
+Joshua Brown
 
-Muntadher "The Code Machine" ALZayer
+Muntadher ALZayer
 
-Matt "Runtime Terror" Donovan
+Matt Donovan
 
 
 connect to mysql server using this command
