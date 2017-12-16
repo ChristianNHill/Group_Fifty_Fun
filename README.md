@@ -1,4 +1,3 @@
-![Picture]https://image.ibb.co/kZH5Em/logosimple.png
 ##
 
 Collaborators:
@@ -11,7 +10,7 @@ Muntadher ALZayer
 
 Matt Donovan
 
-
+##
 connect to mysql server using this command
 
 mysql -h area51-hw.mysql.database.azure.com -u area51@area51-hw -p
