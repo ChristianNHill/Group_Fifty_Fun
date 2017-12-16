@@ -1,4 +1,4 @@
-![Picture]https://ibb.co/i8gnS6
+![Picture]https://image.ibb.co/kZH5Em/logosimple.png
 ##
 
 Collaborators:
