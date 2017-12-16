@@ -10,7 +10,7 @@ import requests
 class BasicTest(unittest.TestCase):
     def setUp(self):
 
-        # Put your username and authey below
+        # Username and authey below
         # You can find your authkey at crossbrowsertesting.com/account
         self.username = "chhi5098@colorado.edu"
         self.authkey  = "uf33c324018390c0"
@@ -29,7 +29,7 @@ class BasicTest(unittest.TestCase):
         caps['platform'] = 'Windows 7 64-Bit'
         caps['screenResolution'] = '1366x768'
 
-        # start the remote browser on our server
+        # start the remote browser on crossbrowsertesting server
         self.driver = webdriver.Remote(
             desired_capabilities=caps,
             command_executor="http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub"%(self.username,self.authkey)
