@@ -82,18 +82,6 @@ h1.page-h {
 }
 .side-menu #dropdown .
 
-
-
-
-
-
-
-
-
-
-
-
-
  .navbar-nav {
 	width: 100%;
 }
