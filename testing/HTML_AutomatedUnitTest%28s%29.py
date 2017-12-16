@@ -6,7 +6,6 @@ class BasicTest(unittest.TestCase):
     def setUp(self):
 
         # Username and authey below
-        # You can find your authkey at crossbrowsertesting.com/account
         self.username = "chhi5098@colorado.edu"
         self.authkey  = "uf33c324018390c0"
 
