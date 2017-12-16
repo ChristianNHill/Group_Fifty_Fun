@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[ ]:
-
 import unittest
 from selenium import webdriver
 import requests
@@ -79,9 +74,3 @@ class BasicTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
-# In[ ]:
-
-
-
