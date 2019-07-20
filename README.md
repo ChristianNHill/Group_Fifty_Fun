@@ -14,7 +14,7 @@ Matt Donovan
 
 Description:
 
-Community based college studying web application. Students can collaborate based on what school they attend and the courses they are in. The application would connect students to each other allowing them to share resources. 
+Community based college studying web application. Students can collaborate based on what school they attend and the courses they are taking. The application would connect students to each other allowing them to share resources. 
 
 The final product will allow users to search for groups based on school and classes as well as allowing them to communicate with one another. The application would help students study in groups and get the help they need on assignments easing the workload on teachers and TAs.
 
